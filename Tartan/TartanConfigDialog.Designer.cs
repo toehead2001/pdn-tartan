@@ -60,6 +60,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.colorWheelTR1 = new Controlz.ColorWheelTR();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -230,7 +236,7 @@
             // 
             // trackBar2
             // 
-            this.trackBar2.Location = new System.Drawing.Point(13, 76);
+            this.trackBar2.Location = new System.Drawing.Point(12, 77);
             this.trackBar2.Maximum = 100;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(203, 45);
@@ -242,7 +248,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(222, 76);
+            this.numericUpDown2.Location = new System.Drawing.Point(222, 77);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(50, 20);
             this.numericUpDown2.TabIndex = 3;
@@ -265,7 +271,7 @@
             "Diagonal - Upward",
             "Diagonal - Downward",
             "50/50 Dots"});
-            this.comboBox1.Location = new System.Drawing.Point(12, 127);
+            this.comboBox1.Location = new System.Drawing.Point(12, 130);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(130, 21);
             this.comboBox1.TabIndex = 4;
@@ -301,7 +307,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(105, 305);
+            this.button8.Location = new System.Drawing.Point(104, 305);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 7;
@@ -322,7 +328,7 @@
             // button10
             // 
             this.button10.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button10.Location = new System.Drawing.Point(397, 342);
+            this.button10.Location = new System.Drawing.Point(397, 347);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 20;
@@ -332,7 +338,7 @@
             // button11
             // 
             this.button11.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button11.Location = new System.Drawing.Point(316, 342);
+            this.button11.Location = new System.Drawing.Point(316, 347);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 19;
@@ -341,24 +347,24 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel2.Location = new System.Drawing.Point(12, 332);
+            this.panel2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel2.Location = new System.Drawing.Point(12, 337);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(460, 1);
             this.panel2.TabIndex = 21;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panel3.Location = new System.Drawing.Point(287, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1, 320);
+            this.panel3.Size = new System.Drawing.Size(1, 325);
             this.panel3.TabIndex = 22;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(302, 311);
+            this.checkBox1.Location = new System.Drawing.Point(302, 266);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(165, 17);
             this.checkBox1.TabIndex = 18;
@@ -370,7 +376,7 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Location = new System.Drawing.Point(302, 282);
+            this.panel5.Location = new System.Drawing.Point(302, 306);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(80, 20);
             this.panel5.TabIndex = 17;
@@ -379,7 +385,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(299, 266);
+            this.label5.Location = new System.Drawing.Point(299, 289);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 26;
@@ -397,13 +403,61 @@
             // colorWheelTR1
             // 
             this.colorWheelTR1.colorval = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.colorWheelTR1.Location = new System.Drawing.Point(12, 174);
+            this.colorWheelTR1.Location = new System.Drawing.Point(12, 178);
             this.colorWheelTR1.Margin = new System.Windows.Forms.Padding(0);
             this.colorWheelTR1.MaximumSize = new System.Drawing.Size(260, 105);
             this.colorWheelTR1.MinimumSize = new System.Drawing.Size(260, 105);
             this.colorWheelTR1.Name = "colorWheelTR1";
             this.colorWheelTR1.Size = new System.Drawing.Size(260, 105);
             this.colorWheelTR1.TabIndex = 5;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel4.Location = new System.Drawing.Point(13, 66);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(260, 1);
+            this.panel4.TabIndex = 29;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel6.Location = new System.Drawing.Point(13, 118);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(260, 1);
+            this.panel6.TabIndex = 30;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel7.Location = new System.Drawing.Point(13, 167);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(260, 1);
+            this.panel7.TabIndex = 31;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel8.Location = new System.Drawing.Point(13, 295);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(260, 1);
+            this.panel8.TabIndex = 32;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Location = new System.Drawing.Point(13, 14);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(260, 1);
+            this.panel1.TabIndex = 33;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel9.Location = new System.Drawing.Point(302, 295);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(170, 1);
+            this.panel9.TabIndex = 34;
             // 
             // TartanConfigDialog
             // 
@@ -412,10 +466,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.button10;
-            this.ClientSize = new System.Drawing.Size(484, 372);
-            this.Controls.Add(this.colorWheelTR1);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(484, 377);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.colorWheelTR1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel3);
@@ -425,14 +489,10 @@
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.trackBar2);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.numericUpDown1);
@@ -485,5 +545,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private Controlz.ColorWheelTR colorWheelTR1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel9;
     }
 }
