@@ -6,8 +6,8 @@ namespace TartanEffect
 {
     class TartanConfigToken : EffectConfigToken
     {
-        private List<TartanConfigDialog.Item> t_horLines;
-        private List<TartanConfigDialog.Item> t_verLines;
+        private List<Item> t_horLines;
+        private List<Item> t_verLines;
         bool t_oneSet;
         Color t_backColor;
 
@@ -16,13 +16,13 @@ namespace TartanEffect
         /// </summary>
         public TartanConfigToken() : base()
         {
-            t_horLines = new List<TartanConfigDialog.Item>();
-            t_verLines = new List<TartanConfigDialog.Item>();
+            t_horLines = new List<Item>();
+            t_verLines = new List<Item>();
             t_oneSet = true;
             t_backColor = Color.White;
         }
 
-        private TartanConfigToken(List<TartanConfigDialog.Item> horLines, List<TartanConfigDialog.Item> verLines, bool oneSet, Color backColor)
+        private TartanConfigToken(List<Item> horLines, List<Item> verLines, bool oneSet, Color backColor)
         {
             t_horLines = horLines;
             t_verLines = verLines;
@@ -35,14 +35,14 @@ namespace TartanEffect
             return new TartanConfigToken(t_horLines, t_verLines, t_oneSet, t_backColor);
         }
 
-        public List<TartanConfigDialog.Item> HorLines
+        public List<Item> HorLines
         {
             get
             {
                 return t_horLines;
             }
         }
-        public List<TartanConfigDialog.Item> VerLines
+        public List<Item> VerLines
         {
             get
             {

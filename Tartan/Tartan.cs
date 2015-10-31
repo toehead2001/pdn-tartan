@@ -108,13 +108,13 @@ namespace TartanEffect
             Pen pen;
 
             int xGroupWide = 0;
-            foreach (TartanConfigDialog.Item lineItem in horLines)
+            foreach (Item lineItem in horLines)
             {
                 xGroupWide += lineItem.Width + lineItem.Spacing;
             }
 
             int yGroupWide = 0;
-            foreach (TartanConfigDialog.Item lineItem in verLines)
+            foreach (Item lineItem in verLines)
             {
                 yGroupWide += lineItem.Width + lineItem.Spacing;
             }
@@ -125,7 +125,7 @@ namespace TartanEffect
             int h = 0;
             for (int i = 0; i < xLoops; i++)
             {
-                foreach (TartanConfigDialog.Item lineItem in horLines)
+                foreach (Item lineItem in horLines)
                 {
                     switch (lineItem.Style)
                     {
@@ -168,7 +168,7 @@ namespace TartanEffect
             int v = 0;
             for (int i = 0; i < yLoops; i++)
             {
-                foreach (TartanConfigDialog.Item lineItem in verLines)
+                foreach (Item lineItem in verLines)
                 {
                     switch (lineItem.Style)
                     {
@@ -221,8 +221,8 @@ namespace TartanEffect
             }
         }
 
-        List<TartanConfigDialog.Item> horLines;
-        List<TartanConfigDialog.Item> verLines;
+        List<Item> horLines;
+        List<Item> verLines;
         bool oneSet;
         Color backColor;
 

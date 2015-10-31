@@ -8,22 +8,6 @@ namespace TartanEffect
 {
     internal partial class TartanConfigDialog : EffectConfigDialog<TartanEffectPlugin, TartanConfigToken>
     {
-        internal class Item
-        {
-            public int Width;
-            public int Spacing;
-            public int Style;
-            public Color Color;
-
-            public Item(int width, int spacing, int style, Color color)
-            {
-                Spacing = spacing;
-                Width = width;
-                Style = style;
-                Color = color;
-            }
-        }
-
         public TartanConfigDialog()
         {
             InitializeComponent();
@@ -425,5 +409,21 @@ namespace TartanEffect
 
        #endregion
 
+    }
+
+    internal class Item
+    {
+        public int Width;
+        public int Spacing;
+        public int Style;
+        public Color Color;
+
+        public Item(int width, int spacing, int style, Color color)
+        {
+            Spacing = spacing;
+            Width = width;
+            Style = style;
+            Color = color;
+        }
     }
 }
