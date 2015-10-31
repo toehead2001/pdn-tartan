@@ -1,10 +1,11 @@
 ﻿using PaintDotNet.Effects;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Xml.Serialization;
 
 namespace TartanEffect
 {
-    class TartanConfigToken : EffectConfigToken
+    public class TartanConfigToken : EffectConfigToken
     {
         private List<Item> t_horLines;
         private List<Item> t_verLines;
@@ -60,6 +61,7 @@ namespace TartanEffect
                 t_oneSet = value;
             }
         }
+        [XmlIgnore]
         public Color BackColor
         {
             get
@@ -70,6 +72,12 @@ namespace TartanEffect
             {
                 t_backColor = value;
             }
+        }        
+        [XmlElement("BackColor")]
+        public string ClrGridHtml
+        {
+            get { return ColorTranslator.ToHtml(BackColor); }
+            set { BackColor = ColorTranslator.FromHtml(value); }
         }
     }
 }

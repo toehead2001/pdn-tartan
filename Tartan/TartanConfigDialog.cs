@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace TartanEffect
 {
@@ -411,12 +412,21 @@ namespace TartanEffect
 
     }
 
-    internal class Item
+    public class Item
     {
         public int Width;
         public int Spacing;
         public int Style;
+
+        [XmlIgnore]
         public Color Color;
+
+        [XmlElement("Color")]
+        public string ClrGridHtml
+        {
+            get { return ColorTranslator.ToHtml(Color); }
+            set { Color = ColorTranslator.FromHtml(value); }
+        }
 
         public Item(int width, int spacing, int style, Color color)
         {
@@ -424,6 +434,10 @@ namespace TartanEffect
             Width = width;
             Style = style;
             Color = color;
+        }
+
+        public Item()
+        {
         }
     }
 }
