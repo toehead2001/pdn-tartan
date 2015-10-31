@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -353,6 +354,58 @@ namespace TartanEffect
                 listBox2.Items.RemoveAt(listBox2.SelectedIndex - 2);
 
                 FinishTokenUpdate();
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    using (FileStream fs = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof(TartanConfigToken));
+                        TartanConfigToken token = (TartanConfigToken)serializer.Deserialize(fs);
+
+                        this.InitDialogFromToken(token);
+
+                        FinishTokenUpdate();
+                    }
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    string message = ex.Message;
+                    if (ex.InnerException != null)
+                    {
+                        message = ex.InnerException.Message; // The XMLSerializer class wraps most Exceptions in an InvalidOperationException.
+                    }
+
+                    MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    using (FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write))
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof(TartanConfigToken));
+                        serializer.Serialize(fs, (TartanConfigToken)theEffectToken);
+                    }
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
