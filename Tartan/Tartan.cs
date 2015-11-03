@@ -199,7 +199,7 @@ namespace TartanEffect
 
                     // Create points that define line.
                     Point pointA = new Point(lineItem.Width / 2 + v, 0);
-                    Point pointB = new Point(lineItem.Width / 2 + v, selection.Width);
+                    Point pointB = new Point(lineItem.Width / 2 + v, selection.Height);
 
                     // Draw line to screen.
                     g.DrawLine(pen, pointA, pointB);
