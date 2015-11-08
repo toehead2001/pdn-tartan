@@ -209,7 +209,7 @@ namespace TartanEffect
             }
 
             tartanSurface = Surface.CopyFromBitmap(tartanBitmap);
-
+            tartanBitmap.Dispose();
         }
 
         protected override void OnRender(Rectangle[] rois, int startIndex, int length)
