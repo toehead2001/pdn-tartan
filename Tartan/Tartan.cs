@@ -108,15 +108,27 @@ namespace TartanEffect
             Pen pen;
 
             int xGroupWide = 0;
-            foreach (Item lineItem in horLines)
+            try
             {
-                xGroupWide += lineItem.Width + lineItem.Spacing;
+                foreach (Item lineItem in horLines)
+                {
+                    xGroupWide += lineItem.Width + lineItem.Spacing;
+                }
+            }
+            catch
+            {
             }
 
             int yGroupWide = 0;
-            foreach (Item lineItem in verLines)
+            try
             {
-                yGroupWide += lineItem.Width + lineItem.Spacing;
+                foreach (Item lineItem in verLines)
+                {
+                    yGroupWide += lineItem.Width + lineItem.Spacing;
+                }
+            }
+            catch
+            {
             }
 
             int xLoops = (int)Math.Ceiling((double)selection.Height / xGroupWide);
@@ -125,86 +137,98 @@ namespace TartanEffect
             int h = 0;
             for (int i = 0; i < xLoops; i++)
             {
-                foreach (Item lineItem in horLines)
+                try
                 {
-                    switch (lineItem.Style)
+                    foreach (Item lineItem in horLines)
                     {
-                        case 0:
-                            brush = new SolidBrush(lineItem.Color);
-                            break;
-                        case 1:
-                            brush = new SolidBrush(Color.FromArgb(170, lineItem.Color));
-                            break;
-                        case 2:
-                            brush = new SolidBrush(Color.FromArgb(85, lineItem.Color));
-                            break;
-                        case 3:
-                            brush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, lineItem.Color, Color.Transparent);
-                            break;
-                        case 4:
-                            brush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, lineItem.Color, Color.Transparent);
-                            break;
-                        case 5:
-                            brush = new HatchBrush(HatchStyle.Percent50, lineItem.Color, Color.Transparent);
-                            break;
-                        default:
-                            brush = new SolidBrush(lineItem.Color);
-                            break;
+                        switch (lineItem.Style)
+                        {
+                            case 0:
+                                brush = new SolidBrush(lineItem.Color);
+                                break;
+                            case 1:
+                                brush = new SolidBrush(Color.FromArgb(170, lineItem.Color));
+                                break;
+                            case 2:
+                                brush = new SolidBrush(Color.FromArgb(85, lineItem.Color));
+                                break;
+                            case 3:
+                                brush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, lineItem.Color, Color.Transparent);
+                                break;
+                            case 4:
+                                brush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, lineItem.Color, Color.Transparent);
+                                break;
+                            case 5:
+                                brush = new HatchBrush(HatchStyle.Percent50, lineItem.Color, Color.Transparent);
+                                break;
+                            default:
+                                brush = new SolidBrush(lineItem.Color);
+                                break;
+                        }
+
+                        pen = new Pen(brush, lineItem.Width);
+
+                        // Create points that define line.
+                        Point pointA = new Point(0, lineItem.Width / 2 + h);
+                        Point pointB = new Point(selection.Width, lineItem.Width / 2 + h);
+
+                        // Draw line to screen.
+                        g.DrawLine(pen, pointA, pointB);
+
+                        h += lineItem.Width + lineItem.Spacing;
                     }
-
-                    pen = new Pen(brush, lineItem.Width);
-
-                    // Create points that define line.
-                    Point pointA = new Point(0, lineItem.Width / 2 + h);
-                    Point pointB = new Point(selection.Width, lineItem.Width / 2 + h);
-
-                    // Draw line to screen.
-                    g.DrawLine(pen, pointA, pointB);
-
-                    h += lineItem.Width + lineItem.Spacing;
+                }
+                catch
+                {
                 }
             }
 
             int v = 0;
             for (int i = 0; i < yLoops; i++)
             {
-                foreach (Item lineItem in verLines)
+                try
                 {
-                    switch (lineItem.Style)
+                    foreach (Item lineItem in verLines)
                     {
-                        case 0:
-                            brush = new SolidBrush(lineItem.Color);
-                            break;
-                        case 1:
-                            brush = new SolidBrush(Color.FromArgb(170, lineItem.Color));
-                            break;
-                        case 2:
-                            brush = new SolidBrush(Color.FromArgb(85, lineItem.Color));
-                            break;
-                        case 3:
-                            brush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, Color.Transparent, lineItem.Color);
-                            break;
-                        case 4:
-                            brush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, Color.Transparent, lineItem.Color);
-                            break;
-                        case 5:
-                            brush = new HatchBrush(HatchStyle.Percent50, Color.Transparent, lineItem.Color);
-                            break;
-                        default:
-                            brush = new SolidBrush(lineItem.Color);
-                            break;
+                        switch (lineItem.Style)
+                        {
+                            case 0:
+                                brush = new SolidBrush(lineItem.Color);
+                                break;
+                            case 1:
+                                brush = new SolidBrush(Color.FromArgb(170, lineItem.Color));
+                                break;
+                            case 2:
+                                brush = new SolidBrush(Color.FromArgb(85, lineItem.Color));
+                                break;
+                            case 3:
+                                brush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, Color.Transparent, lineItem.Color);
+                                break;
+                            case 4:
+                                brush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, Color.Transparent, lineItem.Color);
+                                break;
+                            case 5:
+                                brush = new HatchBrush(HatchStyle.Percent50, Color.Transparent, lineItem.Color);
+                                break;
+                            default:
+                                brush = new SolidBrush(lineItem.Color);
+                                break;
+                        }
+
+                        pen = new Pen(brush, lineItem.Width);
+
+                        // Create points that define line.
+                        Point pointA = new Point(lineItem.Width / 2 + v, 0);
+                        Point pointB = new Point(lineItem.Width / 2 + v, selection.Height);
+
+                        // Draw line to screen.
+                        g.DrawLine(pen, pointA, pointB);
+
+                        v += lineItem.Width + lineItem.Spacing;
                     }
-
-                    pen = new Pen(brush, lineItem.Width);
-
-                    // Create points that define line.
-                    Point pointA = new Point(lineItem.Width / 2 + v, 0);
-                    Point pointB = new Point(lineItem.Width / 2 + v, selection.Height);
-
-                    // Draw line to screen.
-                    g.DrawLine(pen, pointA, pointB);
-
-                    v += lineItem.Width + lineItem.Spacing;
+                }
+                catch
+                {
                 }
             }
 
