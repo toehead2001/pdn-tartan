@@ -7,71 +7,52 @@ namespace TartanEffect
 {
     public class TartanConfigToken : EffectConfigToken
     {
-        private List<Item> t_horLines;
-        private List<Item> t_verLines;
-        bool t_oneSet;
-        Color t_backColor;
+        private List<Item> horLines = new List<Item>();
+        private List<Item> verLines = new List<Item>();
+        bool oneSet = true;
+        Color backColor = Color.White;
 
-        /// <summary>
-        /// Initializes the configuration token with empty dictionaries
-        /// </summary>
         public TartanConfigToken() : base()
         {
-            t_horLines = new List<Item>();
-            t_verLines = new List<Item>();
-            t_oneSet = true;
-            t_backColor = Color.White;
+            this.HorLines = horLines;
+            this.VerLines = verLines;
+            this.OneSet = oneSet;
+            this.BackColor = backColor;
         }
 
-        private TartanConfigToken(List<Item> horLines, List<Item> verLines, bool oneSet, Color backColor)
+        private TartanConfigToken(TartanConfigToken copyMe)
         {
-            t_horLines = horLines;
-            t_verLines = verLines;
-            t_oneSet = oneSet;
-            t_backColor = backColor;
+            this.HorLines = copyMe.HorLines;
+            this.VerLines = copyMe.VerLines;
+            this.OneSet = copyMe.OneSet;
+            this.BackColor = copyMe.BackColor;
         }
 
         public override object Clone()
         {
-            return new TartanConfigToken(t_horLines, t_verLines, t_oneSet, t_backColor);
+            return new TartanConfigToken(this);
         }
 
         public List<Item> HorLines
         {
-            get
-            {
-                return t_horLines;
-            }
+            get;
+            set;
         }
         public List<Item> VerLines
         {
-            get
-            {
-                return t_verLines;
-            }
+            get;
+            set;
         }
         public bool OneSet
         {
-            get
-            {
-                return t_oneSet;
-            }
-            set
-            {
-                t_oneSet = value;
-            }
+            get;
+            set;
         }
         [XmlIgnore]
         public Color BackColor
         {
-            get
-            {
-                return t_backColor;
-            }
-            set
-            {
-                t_backColor = value;
-            }
+            get;
+            set;
         }        
         [XmlElement("BackColor")]
         public string ClrGridHtml
