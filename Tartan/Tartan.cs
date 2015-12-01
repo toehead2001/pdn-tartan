@@ -100,9 +100,10 @@ namespace TartanEffect
             Bitmap tartanBitmap = new Bitmap(selection.Width, selection.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             Graphics g = Graphics.FromImage(tartanBitmap);
 
-            // Fill with white
+            // Fill in background color
             Rectangle backgroundRect = new Rectangle(0, 0, selection.Width, selection.Height);
-            g.FillRectangle(new SolidBrush(backColor), backgroundRect);
+            using (SolidBrush backBrush = new SolidBrush(backColor))
+                g.FillRectangle(backBrush, backgroundRect);
 
             Brush brush;
             Pen pen;
