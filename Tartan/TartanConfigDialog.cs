@@ -23,13 +23,11 @@ namespace TartanEffect
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             numericUpDown1.Value = trackBar1.Value;
-
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             trackBar1.Value = (int)numericUpDown1.Value;
-
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
@@ -105,9 +103,8 @@ namespace TartanEffect
             {
                 // Fill with background color and return
                 using (SolidBrush temp = new SolidBrush(e.BackColor))
-                {
                     e.Graphics.FillRectangle(temp, e.Bounds);
-                }
+
                 return;
             }
 
@@ -118,42 +115,12 @@ namespace TartanEffect
             if (selected)
             {
                 using (SolidBrush hiLighB = new SolidBrush(SystemColors.Highlight))
-                {
                     e.Graphics.FillRectangle(hiLighB, e.Bounds);
-                }
             }
             else
             {
                 using (SolidBrush backB = new SolidBrush(e.BackColor))
-                {
                     e.Graphics.FillRectangle(backB, e.Bounds);
-                }
-            }
-
-            Brush styleB;
-            switch (item.Style)
-            {
-                case 0:
-                    styleB = new SolidBrush(item.Color);
-                    break;
-                case 1:
-                    styleB = new SolidBrush(Color.FromArgb(170, item.Color));
-                    break;
-                case 2:
-                    styleB = new SolidBrush(Color.FromArgb(85, item.Color));
-                    break;
-                case 3:
-                    styleB = new HatchBrush(HatchStyle.DarkUpwardDiagonal, item.Color, Color.Transparent);
-                    break;
-                case 4:
-                    styleB = new HatchBrush(HatchStyle.DarkDownwardDiagonal, item.Color, Color.Transparent);
-                    break;
-                case 5:
-                    styleB = new HatchBrush(HatchStyle.Percent50, item.Color, Color.Transparent);
-                    break;
-                default:
-                    styleB = new SolidBrush(item.Color);
-                    break;
             }
 
             // Draw a small box for the item's color
@@ -162,13 +129,15 @@ namespace TartanEffect
             box.Width = box.Height;
             box.X += 2;
             box.Y += 2;
-            e.Graphics.FillRectangle(new SolidBrush(panel5.BackColor), box);
-            e.Graphics.FillRectangle(styleB, box);
+            using (SolidBrush backColorB = new SolidBrush(panel5.BackColor))
+                e.Graphics.FillRectangle(backColorB, box);
+            using (Brush styleB = getItemBrush(item.Style, item.Color))
+                e.Graphics.FillRectangle(styleB, box);
 
             // Draw the item's text
-            SolidBrush textB = new SolidBrush(e.ForeColor);
             string itemText = item.Width + "px W - " + item.Spacing + "px S";
-            e.Graphics.DrawString(itemText, listBox1.Font, textB, box.Right + 2, e.Bounds.Y);
+            using (SolidBrush textB = new SolidBrush(e.ForeColor))
+                e.Graphics.DrawString(itemText, listBox1.Font, textB, box.Right + 2, e.Bounds.Y);
         }
 
         private void listBox2_DrawItem(object sender, DrawItemEventArgs e)
@@ -179,9 +148,8 @@ namespace TartanEffect
             {
                 // Fill with background color and return
                 using (SolidBrush temp = new SolidBrush(e.BackColor))
-                {
                     e.Graphics.FillRectangle(temp, e.Bounds);
-                }
+
                 return;
             }
 
@@ -192,42 +160,12 @@ namespace TartanEffect
             if (selected)
             {
                 using (SolidBrush hiLighB = new SolidBrush(SystemColors.Highlight))
-                {
                     e.Graphics.FillRectangle(hiLighB, e.Bounds);
-                }
             }
             else
             {
                 using (SolidBrush backB = new SolidBrush(e.BackColor))
-                {
                     e.Graphics.FillRectangle(backB, e.Bounds);
-                }
-            }
-
-            Brush styleB;
-            switch (item.Style)
-            {
-                case 0:
-                    styleB = new SolidBrush(item.Color);
-                    break;
-                case 1:
-                    styleB = new SolidBrush(Color.FromArgb(170, item.Color));
-                    break;
-                case 2:
-                    styleB = new SolidBrush(Color.FromArgb(85, item.Color));
-                    break;
-                case 3:
-                    styleB = new HatchBrush(HatchStyle.DarkUpwardDiagonal, item.Color, Color.Transparent);
-                    break;
-                case 4:
-                    styleB = new HatchBrush(HatchStyle.DarkDownwardDiagonal, item.Color, Color.Transparent);
-                    break;
-                case 5:
-                    styleB = new HatchBrush(HatchStyle.Percent50, item.Color, Color.Transparent);
-                    break;
-                default:
-                    styleB = new SolidBrush(item.Color);
-                    break;
             }
 
             // Draw a small box for the item's color
@@ -236,13 +174,15 @@ namespace TartanEffect
             box.Width = box.Height;
             box.X += 2;
             box.Y += 2;
-            e.Graphics.FillRectangle(new SolidBrush(panel5.BackColor), box);
-            e.Graphics.FillRectangle(styleB, box);
+            using (SolidBrush backColorB = new SolidBrush(panel5.BackColor))
+                e.Graphics.FillRectangle(backColorB, box);
+            using (Brush styleB = getItemBrush(item.Style, item.Color))
+                e.Graphics.FillRectangle(styleB, box);
 
             // Draw the item's text
-            SolidBrush textB = new SolidBrush(e.ForeColor);
             string itemText = item.Width + "px W - " + item.Spacing + "px S";
-            e.Graphics.DrawString(itemText, listBox2.Font, textB, box.Right + 2, e.Bounds.Y);
+            using (SolidBrush textB = new SolidBrush(e.ForeColor))
+                e.Graphics.DrawString(itemText, listBox2.Font, textB, box.Right + 2, e.Bounds.Y);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -462,6 +402,36 @@ namespace TartanEffect
        }
 
        #endregion
+
+        static Brush getItemBrush(int style, Color color)
+        {
+            Brush itemBrush;
+            switch (style)
+            {
+                case 0:
+                    itemBrush = new SolidBrush(color);
+                    break;
+                case 1:
+                    itemBrush = new SolidBrush(Color.FromArgb(170, color));
+                    break;
+                case 2:
+                    itemBrush = new SolidBrush(Color.FromArgb(85, color));
+                    break;
+                case 3:
+                    itemBrush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, color, Color.Transparent);
+                    break;
+                case 4:
+                    itemBrush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, color, Color.Transparent);
+                    break;
+                case 5:
+                    itemBrush = new HatchBrush(HatchStyle.Percent50, color, Color.Transparent);
+                    break;
+                default:
+                    itemBrush = new SolidBrush(color);
+                    break;
+            }
+            return itemBrush;
+        }
 
     }
 

@@ -95,18 +95,16 @@ namespace TartanEffect
             horLines = newToken.HorLines;
             verLines = oneSet ? newToken.HorLines : newToken.VerLines;
 
+
             Rectangle selection = EnvironmentParameters.GetSelection(srcArgs.Surface.Bounds).GetBoundsInt();
 
             Bitmap tartanBitmap = new Bitmap(selection.Width, selection.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            Graphics g = Graphics.FromImage(tartanBitmap);
+            Graphics tartanGraphics = Graphics.FromImage(tartanBitmap);
 
             // Fill in background color
             Rectangle backgroundRect = new Rectangle(0, 0, selection.Width, selection.Height);
             using (SolidBrush backBrush = new SolidBrush(backColor))
-                g.FillRectangle(backBrush, backgroundRect);
-
-            Brush brush;
-            Pen pen;
+                tartanGraphics.FillRectangle(backBrush, backgroundRect);
 
             int xGroupWide = 0;
             try
@@ -142,39 +140,13 @@ namespace TartanEffect
                 {
                     foreach (Item lineItem in horLines)
                     {
-                        switch (lineItem.Style)
-                        {
-                            case 0:
-                                brush = new SolidBrush(lineItem.Color);
-                                break;
-                            case 1:
-                                brush = new SolidBrush(Color.FromArgb(170, lineItem.Color));
-                                break;
-                            case 2:
-                                brush = new SolidBrush(Color.FromArgb(85, lineItem.Color));
-                                break;
-                            case 3:
-                                brush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, lineItem.Color, Color.Transparent);
-                                break;
-                            case 4:
-                                brush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, lineItem.Color, Color.Transparent);
-                                break;
-                            case 5:
-                                brush = new HatchBrush(HatchStyle.Percent50, lineItem.Color, Color.Transparent);
-                                break;
-                            default:
-                                brush = new SolidBrush(lineItem.Color);
-                                break;
-                        }
-
-                        pen = new Pen(brush, lineItem.Width);
-
                         // Create points that define line.
                         Point pointA = new Point(0, lineItem.Width / 2 + h);
                         Point pointB = new Point(selection.Width, lineItem.Width / 2 + h);
 
                         // Draw line to screen.
-                        g.DrawLine(pen, pointA, pointB);
+                        using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width))
+                            tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
 
                         h += lineItem.Width + lineItem.Spacing;
                     }
@@ -191,39 +163,13 @@ namespace TartanEffect
                 {
                     foreach (Item lineItem in verLines)
                     {
-                        switch (lineItem.Style)
-                        {
-                            case 0:
-                                brush = new SolidBrush(lineItem.Color);
-                                break;
-                            case 1:
-                                brush = new SolidBrush(Color.FromArgb(170, lineItem.Color));
-                                break;
-                            case 2:
-                                brush = new SolidBrush(Color.FromArgb(85, lineItem.Color));
-                                break;
-                            case 3:
-                                brush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, Color.Transparent, lineItem.Color);
-                                break;
-                            case 4:
-                                brush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, Color.Transparent, lineItem.Color);
-                                break;
-                            case 5:
-                                brush = new HatchBrush(HatchStyle.Percent50, Color.Transparent, lineItem.Color);
-                                break;
-                            default:
-                                brush = new SolidBrush(lineItem.Color);
-                                break;
-                        }
-
-                        pen = new Pen(brush, lineItem.Width);
-
                         // Create points that define line.
                         Point pointA = new Point(lineItem.Width / 2 + v, 0);
                         Point pointB = new Point(lineItem.Width / 2 + v, selection.Height);
 
                         // Draw line to screen.
-                        g.DrawLine(pen, pointA, pointB);
+                        using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width))
+                            tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
 
                         v += lineItem.Width + lineItem.Spacing;
                     }
@@ -235,15 +181,52 @@ namespace TartanEffect
 
             tartanSurface = Surface.CopyFromBitmap(tartanBitmap);
             tartanBitmap.Dispose();
+
+
+            base.OnSetRenderInfo(newToken, dstArgs, srcArgs);
         }
 
-        protected override void OnRender(Rectangle[] rois, int startIndex, int length)
+        protected override void OnRender(Rectangle[] renderRects, int startIndex, int length)
         {
             if (length == 0) return;
             for (int i = startIndex; i < startIndex + length; ++i)
             {
-                Render(DstArgs.Surface, SrcArgs.Surface, rois[i]);
+                Render(DstArgs.Surface, SrcArgs.Surface, renderRects[i]);
             }
+        }
+
+        static Pen getItemPen(int style, Color color, int width)
+        {
+            Brush itemBrush;
+            switch (style)
+            {
+                case 0:
+                    itemBrush = new SolidBrush(color);
+                    break;
+                case 1:
+                    itemBrush = new SolidBrush(Color.FromArgb(170, color));
+                    break;
+                case 2:
+                    itemBrush = new SolidBrush(Color.FromArgb(85, color));
+                    break;
+                case 3:
+                    itemBrush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, color, Color.Transparent);
+                    break;
+                case 4:
+                    itemBrush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, color, Color.Transparent);
+                    break;
+                case 5:
+                    itemBrush = new HatchBrush(HatchStyle.Percent50, color, Color.Transparent);
+                    break;
+                default:
+                    itemBrush = new SolidBrush(color);
+                    break;
+            }
+
+            Pen itemPen = new Pen(itemBrush, width);
+            itemBrush.Dispose();
+
+            return itemPen;
         }
 
         List<Item> horLines;
