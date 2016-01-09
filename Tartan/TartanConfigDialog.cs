@@ -349,59 +349,59 @@ namespace TartanEffect
             }
         }
 
-       #region EffectConfigDialog stuff
+        #region EffectConfigDialog stuff
 
-       protected override TartanConfigToken CreateInitialToken()
-       {
-           return new TartanConfigToken();
-       }
+        protected override TartanConfigToken CreateInitialToken()
+        {
+            return new TartanConfigToken();
+        }
 
-       protected override void InitDialogFromToken(TartanConfigToken effectTokenCopy)
-       {
-           listBox1.Items.Clear();
-           listBox2.Items.Clear();
+        protected override void InitDialogFromToken(TartanConfigToken effectTokenCopy)
+        {
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
 
-           foreach (Item lineItem in effectTokenCopy.HorLines)
-           {
-               Item item = new Item(lineItem.Width, lineItem.Spacing, lineItem.Style, lineItem.Color);
-               listBox1.Items.Add(item);
-           }
+            foreach (Item lineItem in effectTokenCopy.HorLines)
+            {
+                Item item = new Item(lineItem.Width, lineItem.Spacing, lineItem.Style, lineItem.Color);
+                listBox1.Items.Add(item);
+            }
 
-           foreach (Item lineItem in effectTokenCopy.VerLines)
-           {
-               Item item = new Item(lineItem.Width, lineItem.Spacing, lineItem.Style, lineItem.Color);
-               listBox2.Items.Add(item);
-           }
+            foreach (Item lineItem in effectTokenCopy.VerLines)
+            {
+                Item item = new Item(lineItem.Width, lineItem.Spacing, lineItem.Style, lineItem.Color);
+                listBox2.Items.Add(item);
+            }
 
-           panel5.BackColor = effectTokenCopy.BackColor;
+            panel5.BackColor = effectTokenCopy.BackColor;
 
-           checkBox1.Checked = effectTokenCopy.OneSet;
-       }
+            checkBox1.Checked = effectTokenCopy.OneSet;
+        }
 
-       protected override void LoadIntoTokenFromDialog(TartanConfigToken writeValuesHere)
-       {
-           writeValuesHere.HorLines.Clear();
-           for (int i = 0; i < listBox1.Items.Count; i++)
-           {
-               Item item = (Item)listBox1.Items[i];
+        protected override void LoadIntoTokenFromDialog(TartanConfigToken writeValuesHere)
+        {
+            writeValuesHere.HorLines.Clear();
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                Item item = (Item)listBox1.Items[i];
 
-               writeValuesHere.HorLines.Add(new Item(item.Width, item.Spacing, item.Style, item.Color));
-           }
+                writeValuesHere.HorLines.Add(new Item(item.Width, item.Spacing, item.Style, item.Color));
+            }
 
-           writeValuesHere.VerLines.Clear();
-           for (int i = 0; i < listBox2.Items.Count; i++)
-           {
-               Item item = (Item)listBox2.Items[i];
+            writeValuesHere.VerLines.Clear();
+            for (int i = 0; i < listBox2.Items.Count; i++)
+            {
+                Item item = (Item)listBox2.Items[i];
 
-               writeValuesHere.VerLines.Add(new Item(item.Width, item.Spacing, item.Style, item.Color));
-           }
+                writeValuesHere.VerLines.Add(new Item(item.Width, item.Spacing, item.Style, item.Color));
+            }
 
-           writeValuesHere.BackColor = panel5.BackColor;
+            writeValuesHere.BackColor = panel5.BackColor;
 
-           writeValuesHere.OneSet = checkBox1.Checked;
-       }
+            writeValuesHere.OneSet = checkBox1.Checked;
+        }
 
-       #endregion
+        #endregion
 
         static Brush getItemBrush(int style, Color color)
         {
