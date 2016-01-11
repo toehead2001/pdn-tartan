@@ -44,7 +44,24 @@ namespace TartanEffect
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            panel10.Invalidate();
+            panel10.Update();
+        }
 
+        private void colorWheelTR1_ValueChanged(object sender, Color e)
+        {
+            panel10.Invalidate();
+            panel10.Update();
+        }
+
+        private void panel10_Paint(object sender, PaintEventArgs e)
+        {
+            using (HatchBrush checkered = new HatchBrush(HatchStyle.LargeCheckerBoard, Color.White, Color.Silver))
+                e.Graphics.FillRectangle(checkered, 0, 0, panel10.Width, panel10.Height);
+            using (Brush style = getItemBrush(comboBox1.SelectedIndex, colorWheelTR1.colorval))
+                e.Graphics.FillRectangle(style, 0, 0, panel10.Width, panel10.Height);
+            using (Pen previewOutline = new Pen(Color.White, 1))
+                e.Graphics.DrawRectangle(previewOutline, 0, 0, panel10.Width - 3, panel10.Height - 3);
         }
 
         private void button7_Click(object sender, EventArgs e)

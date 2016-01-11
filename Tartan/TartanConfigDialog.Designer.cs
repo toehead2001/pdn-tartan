@@ -72,6 +72,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.panel10 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -278,7 +279,7 @@
             "Diagonal - Upward",
             "Diagonal - Downward",
             "Dots - 50/50"});
-            this.comboBox1.Location = new System.Drawing.Point(12, 130);
+            this.comboBox1.Location = new System.Drawing.Point(11, 260);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(130, 21);
             this.comboBox1.TabIndex = 4;
@@ -287,7 +288,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 111);
+            this.label3.Location = new System.Drawing.Point(9, 241);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 13;
@@ -296,7 +297,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 161);
+            this.label4.Location = new System.Drawing.Point(9, 112);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 13);
             this.label4.TabIndex = 14;
@@ -410,13 +411,14 @@
             // colorWheelTR1
             // 
             this.colorWheelTR1.colorval = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.colorWheelTR1.Location = new System.Drawing.Point(12, 178);
+            this.colorWheelTR1.Location = new System.Drawing.Point(12, 129);
             this.colorWheelTR1.Margin = new System.Windows.Forms.Padding(0);
             this.colorWheelTR1.MaximumSize = new System.Drawing.Size(260, 105);
             this.colorWheelTR1.MinimumSize = new System.Drawing.Size(260, 105);
             this.colorWheelTR1.Name = "colorWheelTR1";
             this.colorWheelTR1.Size = new System.Drawing.Size(260, 105);
             this.colorWheelTR1.TabIndex = 5;
+            this.colorWheelTR1.ValueChanged += new Controlz.ColorWheelTR.ValueChangedEventHandler(this.colorWheelTR1_ValueChanged);
             // 
             // panel4
             // 
@@ -429,7 +431,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel6.Location = new System.Drawing.Point(13, 118);
+            this.panel6.Location = new System.Drawing.Point(11, 248);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(260, 1);
             this.panel6.TabIndex = 30;
@@ -437,7 +439,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel7.Location = new System.Drawing.Point(13, 167);
+            this.panel7.Location = new System.Drawing.Point(13, 118);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(260, 1);
             this.panel7.TabIndex = 31;
@@ -477,7 +479,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(12, 347);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(138, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(107, 25);
             this.toolStrip1.TabIndex = 35;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -510,6 +512,15 @@
             this.saveFileDialog1.Filter = "XML Files (*.xml) | *.xml";
             this.saveFileDialog1.Title = "Save Tartan";
             // 
+            // panel10
+            // 
+            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel10.Location = new System.Drawing.Point(158, 260);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(20, 20);
+            this.panel10.TabIndex = 36;
+            this.panel10.Paint += new System.Windows.Forms.PaintEventHandler(this.panel10_Paint);
+            // 
             // TartanConfigDialog
             // 
             this.AcceptButton = this.button11;
@@ -518,6 +529,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.button10;
             this.ClientSize = new System.Drawing.Size(484, 377);
+            this.Controls.Add(this.panel10);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel9);
@@ -610,5 +622,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Panel panel10;
     }
 }
