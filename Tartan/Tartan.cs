@@ -145,7 +145,7 @@ namespace TartanEffect
                         Point pointB = new Point(selection.Width, lineItem.Width / 2 + h);
 
                         // Draw line to screen.
-                        using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width))
+                        using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 0))
                             tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
 
                         h += lineItem.Width + lineItem.Spacing;
@@ -168,7 +168,7 @@ namespace TartanEffect
                         Point pointB = new Point(lineItem.Width / 2 + v, selection.Height);
 
                         // Draw line to screen.
-                        using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width))
+                        using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 1))
                             tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
 
                         v += lineItem.Width + lineItem.Spacing;
@@ -195,8 +195,17 @@ namespace TartanEffect
             }
         }
 
-        static Pen getItemPen(int style, Color color, int width)
+        static Pen getItemPen(int style, Color color, int width, byte orientation)
         {
+            Color color1 = color;
+            Color color2 = Color.Transparent;
+
+            if (orientation == 1)
+            {
+                color1 = Color.Transparent;
+                color2 = color;
+            }
+
             Brush itemBrush;
             switch (style)
             {
@@ -210,13 +219,13 @@ namespace TartanEffect
                     itemBrush = new SolidBrush(Color.FromArgb(85, color));
                     break;
                 case 3:
-                    itemBrush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, color, Color.Transparent);
+                    itemBrush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, color1, color2);
                     break;
                 case 4:
-                    itemBrush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, color, Color.Transparent);
+                    itemBrush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, color1, color2);
                     break;
                 case 5:
-                    itemBrush = new HatchBrush(HatchStyle.Percent50, color, Color.Transparent);
+                    itemBrush = new HatchBrush(HatchStyle.Percent50, color1, color2);
                     break;
                 default:
                     itemBrush = new SolidBrush(color);
