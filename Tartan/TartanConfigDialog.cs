@@ -17,6 +17,7 @@ namespace TartanEffect
 
         private void TartanConfigDialog_Load(object sender, EventArgs e)
         {
+            pdnColor1.Argb = Effect.EnvironmentParameters.PrimaryColor;
             comboBox1.SelectedIndex = 0;
             ListButtonStates(0);
         }
@@ -49,7 +50,7 @@ namespace TartanEffect
             panel10.Update();
         }
 
-        private void colorWheelTR1_ValueChanged(object sender, Color e)
+        private void pdnColor1_ValueChanged(object sender, Color e)
         {
             panel10.Invalidate();
             panel10.Update();
@@ -59,7 +60,7 @@ namespace TartanEffect
         {
             using (HatchBrush checkered = new HatchBrush(HatchStyle.LargeCheckerBoard, Color.White, Color.Silver))
                 e.Graphics.FillRectangle(checkered, 0, 0, panel10.Width, panel10.Height);
-            using (Brush style = getItemBrush(comboBox1.SelectedIndex, colorWheelTR1.colorval))
+            using (Brush style = getItemBrush(comboBox1.SelectedIndex, pdnColor1.Argb))
                 e.Graphics.FillRectangle(style, 0, 0, panel10.Width, panel10.Height);
             using (Pen previewOutline = new Pen(Color.White, 1))
                 e.Graphics.DrawRectangle(previewOutline, 0, 0, panel10.Width - 3, panel10.Height - 3);
@@ -68,7 +69,7 @@ namespace TartanEffect
         private void button7_Click(object sender, EventArgs e)
         {
             // Create the item and add it to the list box
-            Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, colorWheelTR1.colorval);
+            Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, pdnColor1.Argb);
             listBox1.Items.Add(lineItem);
 
             ListButtonStates(1);
@@ -79,7 +80,7 @@ namespace TartanEffect
         private void button8_Click(object sender, EventArgs e)
         {
             // Create the item and add it to the list box
-            Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, colorWheelTR1.colorval);
+            Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, pdnColor1.Argb);
             listBox2.Items.Add(lineItem);
 
             ListButtonStates(2);
@@ -90,7 +91,7 @@ namespace TartanEffect
         private void button9_Click(object sender, EventArgs e)
         {
             // Create the item and add it to the list box
-            Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, colorWheelTR1.colorval);
+            Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, pdnColor1.Argb);
             listBox1.Items.Add(lineItem);
             listBox2.Items.Add(lineItem);
 

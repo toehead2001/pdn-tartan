@@ -50,11 +50,11 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorWheelTR.cs">
+    <Compile Include="PdnColor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ColorWheelTR.designer.cs">
-      <DependentUpon>ColorWheelTR.cs</DependentUpon>
+    <Compile Include="PdnColor.designer.cs">
+      <DependentUpon>PdnColor.cs</DependentUpon>
     </Compile>
     <Compile Include="Tartan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,8 +67,8 @@
     <Compile Include="TartanConfigToken.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ColorWheelTR.resx">
-      <DependentUpon>ColorWheelTR.cs</DependentUpon>
+    <EmbeddedResource Include="PdnColor.resx">
+      <DependentUpon>PdnColor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TartanConfigDialog.resx">
       <DependentUpon>TartanConfigDialog.cs</DependentUpon>

@@ -60,7 +60,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.colorWheelTR1 = new Controlz.ColorWheelTR();
+            this.pdnColor1 = new Controlz.PdnColor();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -408,17 +408,16 @@
             this.label6.TabIndex = 27;
             this.label6.Text = "Add to...";
             // 
-            // colorWheelTR1
+            // pdnColor1
             // 
-            this.colorWheelTR1.colorval = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.colorWheelTR1.Location = new System.Drawing.Point(12, 129);
-            this.colorWheelTR1.Margin = new System.Windows.Forms.Padding(0);
-            this.colorWheelTR1.MaximumSize = new System.Drawing.Size(260, 105);
-            this.colorWheelTR1.MinimumSize = new System.Drawing.Size(260, 105);
-            this.colorWheelTR1.Name = "colorWheelTR1";
-            this.colorWheelTR1.Size = new System.Drawing.Size(260, 105);
-            this.colorWheelTR1.TabIndex = 5;
-            this.colorWheelTR1.ValueChanged += new Controlz.ColorWheelTR.ValueChangedEventHandler(this.colorWheelTR1_ValueChanged);
+            this.pdnColor1.Argb = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pdnColor1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pdnColor1.Location = new System.Drawing.Point(12, 129);
+            this.pdnColor1.Margin = new System.Windows.Forms.Padding(0);
+            this.pdnColor1.Name = "pdnColor1";
+            this.pdnColor1.Size = new System.Drawing.Size(260, 110);
+            this.pdnColor1.TabIndex = 5;
+            this.pdnColor1.ValueChanged += new Controlz.PdnColor.ValueChangedEventHandler(this.pdnColor1_ValueChanged);
             // 
             // panel4
             // 
@@ -543,7 +542,7 @@
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.colorWheelTR1);
+            this.Controls.Add(this.pdnColor1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel3);
@@ -610,7 +609,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private Controlz.ColorWheelTR colorWheelTR1;
+        private Controlz.PdnColor pdnColor1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
