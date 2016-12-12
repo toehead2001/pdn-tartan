@@ -18,6 +18,7 @@ namespace TartanEffect
         private void TartanConfigDialog_Load(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0;
+            ListButtonStates(0);
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -70,6 +71,8 @@ namespace TartanEffect
             Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, colorWheelTR1.colorval);
             listBox1.Items.Add(lineItem);
 
+            ListButtonStates(1);
+
             FinishTokenUpdate();
         }
 
@@ -78,6 +81,8 @@ namespace TartanEffect
             // Create the item and add it to the list box
             Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, colorWheelTR1.colorval);
             listBox2.Items.Add(lineItem);
+
+            ListButtonStates(2);
 
             FinishTokenUpdate();
         }
@@ -88,6 +93,8 @@ namespace TartanEffect
             Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, colorWheelTR1.colorval);
             listBox1.Items.Add(lineItem);
             listBox2.Items.Add(lineItem);
+
+            ListButtonStates(0);
 
             FinishTokenUpdate();
         }
@@ -146,6 +153,7 @@ namespace TartanEffect
 
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ListButtonStates((sender == listBox1) ? 1 : 2);
         }
 
         // Remove Line
@@ -174,6 +182,8 @@ namespace TartanEffect
             {
                 return;
             }
+
+            ListButtonStates((listBox == listBox1) ? 1 : 2);
 
             FinishTokenUpdate();
         }
@@ -313,6 +323,23 @@ namespace TartanEffect
         }
 
         #endregion
+
+        private void ListButtonStates(int listBox)
+        {
+            if (listBox == 1 || listBox == 0)
+            {
+                button1.Enabled = (listBox1.SelectedIndex > 0 && listBox1.Items.Count > 1);
+                button3.Enabled = (listBox1.SelectedIndex < listBox1.Items.Count - 1 && listBox1.Items.Count > 1 && listBox1.SelectedIndex != -1);
+                button2.Enabled = (listBox1.SelectedIndex != -1);
+            }
+
+            if (listBox == 2 || listBox == 0)
+            {
+                button4.Enabled = (listBox2.SelectedIndex > 0 && listBox2.Items.Count > 1);
+                button6.Enabled = (listBox2.SelectedIndex < listBox2.Items.Count - 1 && listBox2.Items.Count > 1 && listBox2.SelectedIndex != -1);
+                button5.Enabled = (listBox2.SelectedIndex != -1);
+            }
+        }
 
         static Brush getItemBrush(int style, Color color)
         {
