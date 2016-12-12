@@ -114,33 +114,15 @@ namespace TartanEffect
 
         private void listBox_DrawItem(object sender, DrawItemEventArgs e)
         {
-            ListBox listBox = (sender as ListBox);
-
-            bool selected = listBox.SelectedIndex == e.Index;
-
-            if (-1 == e.Index)
-            {
-                // Fill with background color and return
-                using (SolidBrush temp = new SolidBrush(e.BackColor))
-                    e.Graphics.FillRectangle(temp, e.Bounds);
-
+            if (e.Index == -1)
                 return;
-            }
+
+            e.DrawBackground();
+            e.DrawFocusRectangle();
 
             // Get the item
+            ListBox listBox = (sender as ListBox);
             Item item = (Item)listBox.Items[e.Index];
-
-            // Start by filling the backgorund
-            if (selected)
-            {
-                using (SolidBrush hiLighB = new SolidBrush(SystemColors.Highlight))
-                    e.Graphics.FillRectangle(hiLighB, e.Bounds);
-            }
-            else
-            {
-                using (SolidBrush backB = new SolidBrush(e.BackColor))
-                    e.Graphics.FillRectangle(backB, e.Bounds);
-            }
 
             // Draw a small box for the item's color
             Rectangle box = e.Bounds;
@@ -155,13 +137,15 @@ namespace TartanEffect
 
             // Draw the item's text
             string itemText = item.Width + "px W - " + item.Spacing + "px S";
+            //int padHelper = 3 - item.Width.ToString().Length;
+            //string padding = (padHelper == 2) ? "  " : (padHelper == 1) ? " " : "";
+            //string itemText = $"{padding}{item.Width}px W - {item.Spacing} px S";
             using (SolidBrush textB = new SolidBrush(e.ForeColor))
                 e.Graphics.DrawString(itemText, listBox.Font, textB, box.Right + 2, e.Bounds.Y);
         }
 
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            (sender as ListBox).Refresh();
         }
 
         // Remove Line
