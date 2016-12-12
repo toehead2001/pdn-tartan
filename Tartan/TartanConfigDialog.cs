@@ -20,6 +20,12 @@ namespace TartanEffect
             pdnColor1.Argb = Effect.EnvironmentParameters.PrimaryColor;
             comboBox1.SelectedIndex = 0;
             ListButtonStates(0);
+
+            float DPI = this.AutoScaleDimensions.Width / 96f;
+            listBox1.ItemHeight = (int)(listBox1.ItemHeight * DPI);
+            listBox1.Size = new Size((int)(126 * DPI), (int)(95 * DPI));
+            listBox2.ItemHeight = (int)(listBox2.ItemHeight * DPI);
+            listBox2.Size = new Size((int)(126 * DPI), (int)(95 * DPI));
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)

@@ -20,8 +20,6 @@ namespace Controlz
         {
             InitializeComponent();
 
-            wheelBmp = new Bitmap(colorWheelBox.Width, colorWheelBox.Width);
-
             HsvRainbow = new Color[65];
             for (float i = 0; i < 65; i++)
             {
@@ -190,10 +188,10 @@ namespace Controlz
         #region Color Wheel functions
         private void ColorWheel_Paint()
         {
-            int Radius = 50;
-            byte Padding = 1;
+            float Padding = colorWheelBox.ClientRectangle.Width * 3 / 108;
+            float Radius = colorWheelBox.ClientRectangle.Width / 2 - Padding;
 
-            Rectangle wheelRect = new Rectangle(2 + Padding, 2 + Padding, Radius * 2, Radius * 2);
+            RectangleF wheelRect = new RectangleF(Padding, Padding, Radius * 2, Radius * 2);
 
             #region create wheel
             GraphicsPath wheel_path = new GraphicsPath();
@@ -208,6 +206,8 @@ namespace Controlz
                 surround_colors[(int)i] = c;
             }
             #endregion
+            if (wheelBmp == null)
+                wheelBmp = new Bitmap(colorWheelBox.ClientRectangle.Width, colorWheelBox.ClientRectangle.Width);
             using (Graphics g = Graphics.FromImage(wheelBmp))
             {
                 g.Clear(Color.Transparent);
@@ -229,9 +229,11 @@ namespace Controlz
                 double hlfht = Radius + Padding;
                 double radius = MasterSat * (hlfht - 1 - Padding);
 
-                float _hueX = (float)(hlfht + radius * Math.Cos(MasterHue * Math.PI / .5) - 1.0f);
-                float _huey = (float)(hlfht + radius * Math.Sin(MasterHue * Math.PI / .5) - 1.0f);
-                RectangleF _hueMark = new RectangleF(_hueX, _huey, 6, 6);
+                PointF _huePoint = new PointF();
+                _huePoint.X = (float)(hlfht + radius * Math.Cos(MasterHue * Math.PI / .5) - Padding);
+                _huePoint.Y = (float)(hlfht + radius * Math.Sin(MasterHue * Math.PI / .5) - Padding);
+                SizeF _hueSize = new SizeF(Padding * 2, Padding * 2);
+                RectangleF _hueMark = new RectangleF(_huePoint, _hueSize);
                 using (SolidBrush markBrush = new SolidBrush(HSVtoRGB(MasterAlpha, MasterHue, MasterSat, 1)))
                     g.FillEllipse(markBrush, _hueMark);
 
@@ -255,10 +257,10 @@ namespace Controlz
         {
             if (!mouseDown) return;
 
-            int Radius = 50;
-            byte Padding = 1;
+            float Padding = colorWheelBox.ClientRectangle.Width * 3 / 100;
+            float Radius = colorWheelBox.ClientRectangle.Width / 2 - Padding;
 
-            int hlfht = Radius + Padding;
+            float hlfht = Radius + Padding;
             double offset;
             offset = Math.Sqrt((e.Y - hlfht) * (e.Y - hlfht) + (e.X - hlfht) * (e.X - hlfht)) / (double)hlfht;
 
@@ -488,8 +490,6 @@ namespace Controlz
             this.MouseDown += ColorSlider_MouseDown;
             this.MouseMove += ColorSlider_MouseMove;
             this.MouseUp += ColorSlider_MouseUp;
-
-            this.markerBmp = new Bitmap(this.Width, this.Height);
         }
 
         private void ColorSlider_MouseUp(object sender, MouseEventArgs e)
@@ -502,7 +502,10 @@ namespace Controlz
             if (!isMouseDown)
                 return;
 
-            value = e.Y / 94F * maxValue - 4;
+            float range = this.ClientSize.Height * 0.9216f;
+            float offset = this.ClientSize.Height * 0.039f;
+
+            value = e.Y / range * maxValue - offset;
             value = Clamp(value, 0, maxValue);
             value = Math.Abs(value - maxValue);
             this.Refresh();
@@ -536,7 +539,10 @@ namespace Controlz
 
         private void DrawMarker()
         {
-            using (Graphics g = Graphics.FromImage(markerBmp))
+            if (this.markerBmp == null || this.Image.Size != this.ClientSize)
+                this.markerBmp = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+
+            using (Graphics g = Graphics.FromImage(this.markerBmp))
             {
                 g.CompositingMode = CompositingMode.SourceOver;
                 g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -548,16 +554,17 @@ namespace Controlz
                 if (maxValue == 0)
                     maxValue = 1;
 
-                float markPos = Math.Abs(value - maxValue) / maxValue * (g.VisibleClipBounds.Height - 9) + 4;
+                float dpi = g.DpiX / 96f;
+                float markPos = Math.Abs(value - maxValue) / maxValue * (g.VisibleClipBounds.Height - (9 * dpi)) + (4 * dpi);
 
-                PointF right  = new PointF(g.VisibleClipBounds.Left + 7, markPos);
-                PointF bottom = new PointF(g.VisibleClipBounds.Left, markPos - 3.5f);
-                PointF top = new PointF(g.VisibleClipBounds.Left, markPos + 3.5f);
+                PointF right  = new PointF(g.VisibleClipBounds.Left + (7f * dpi), markPos);
+                PointF bottom = new PointF(g.VisibleClipBounds.Left, markPos - (3.5f * dpi));
+                PointF top = new PointF(g.VisibleClipBounds.Left, markPos + (3.5f * dpi));
                 PointF[] marker1 = { top, right, bottom };
 
-                PointF left = new PointF(g.VisibleClipBounds.Right - 8, markPos);
-                PointF bottom2 = new PointF(g.VisibleClipBounds.Right - 1, markPos - 3.5f);
-                PointF top2 = new PointF(g.VisibleClipBounds.Right - 1, markPos + 3.5f);
+                PointF left = new PointF(g.VisibleClipBounds.Right - 1 - (7 * dpi), markPos);
+                PointF bottom2 = new PointF(g.VisibleClipBounds.Right - 1, markPos - (3.5f * dpi));
+                PointF top2 = new PointF(g.VisibleClipBounds.Right - 1, markPos + (3.5f * dpi));
                 PointF[] marker2 = { top2, left, bottom2 };
 
                 Color markerColor = Color.Black;
@@ -588,13 +595,14 @@ namespace Controlz
 
         private void DrawColors()
         {
-            if (this.Image == null)
-                this.Image = new Bitmap(this.Width, this.Height);
+            if (this.Image == null || this.Image.Size != this.ClientSize)
+                this.Image = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
 
             using (Graphics g = Graphics.FromImage(this.Image))
             {
                 g.Clear(Color.Transparent);
-                RectangleF colorRect = new RectangleF(g.VisibleClipBounds.X + 4, g.VisibleClipBounds.Y + 4, g.VisibleClipBounds.Width - 8, g.VisibleClipBounds.Height - 8);
+                float dpi = g.DpiX / 96f;
+                RectangleF colorRect = new RectangleF(g.VisibleClipBounds.X + (4 * dpi), g.VisibleClipBounds.Y + (4 * dpi), g.VisibleClipBounds.Width - (8 * dpi), g.VisibleClipBounds.Height - (8 * dpi));
 
                 using (LinearGradientBrush brush = new LinearGradientBrush(colorRect, colors[0], colors[1], LinearGradientMode.Vertical))
                 {
