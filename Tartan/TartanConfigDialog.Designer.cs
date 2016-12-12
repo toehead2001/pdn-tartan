@@ -90,8 +90,8 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(126, 95);
             this.listBox1.TabIndex = 9;
-            this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
             // listBox2
             // 
@@ -101,8 +101,8 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(126, 95);
             this.listBox2.TabIndex = 13;
-            this.listBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox2_DrawItem);
-            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            this.listBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
             // numericUpDown1
             // 
@@ -144,7 +144,7 @@
             this.button3.TabIndex = 11;
             this.button3.Text = "▼";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.MoveDown_Click);
             // 
             // button2
             // 
@@ -155,7 +155,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "X";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Remove_Click);
             // 
             // button1
             // 
@@ -165,7 +165,7 @@
             this.button1.TabIndex = 10;
             this.button1.Text = "▲";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.MoveUp_Click);
             // 
             // groupBox2
             // 
@@ -188,7 +188,7 @@
             this.button6.TabIndex = 15;
             this.button6.Text = "▼";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.MoveDown_Click);
             // 
             // button5
             // 
@@ -199,7 +199,7 @@
             this.button5.TabIndex = 16;
             this.button5.Text = "X";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.Remove_Click);
             // 
             // button4
             // 
@@ -209,7 +209,7 @@
             this.button4.TabIndex = 14;
             this.button4.Text = "▲";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.MoveUp_Click);
             // 
             // label1
             // 

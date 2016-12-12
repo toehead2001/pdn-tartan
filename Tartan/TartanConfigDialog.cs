@@ -112,9 +112,11 @@ namespace TartanEffect
         }
 
 
-        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
+        private void listBox_DrawItem(object sender, DrawItemEventArgs e)
         {
-            bool selected = listBox1.SelectedIndex == e.Index;
+            ListBox listBox = (sender as ListBox);
+
+            bool selected = listBox.SelectedIndex == e.Index;
 
             if (-1 == e.Index)
             {
@@ -126,7 +128,7 @@ namespace TartanEffect
             }
 
             // Get the item
-            Item item = (Item)listBox1.Items[e.Index];
+            Item item = (Item)listBox.Items[e.Index];
 
             // Start by filling the backgorund
             if (selected)
@@ -154,161 +156,66 @@ namespace TartanEffect
             // Draw the item's text
             string itemText = item.Width + "px W - " + item.Spacing + "px S";
             using (SolidBrush textB = new SolidBrush(e.ForeColor))
-                e.Graphics.DrawString(itemText, listBox1.Font, textB, box.Right + 2, e.Bounds.Y);
+                e.Graphics.DrawString(itemText, listBox.Font, textB, box.Right + 2, e.Bounds.Y);
         }
 
-        private void listBox2_DrawItem(object sender, DrawItemEventArgs e)
+        private void listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bool selected = listBox2.SelectedIndex == e.Index;
-
-            if (-1 == e.Index)
-            {
-                // Fill with background color and return
-                using (SolidBrush temp = new SolidBrush(e.BackColor))
-                    e.Graphics.FillRectangle(temp, e.Bounds);
-
-                return;
-            }
-
-            // Get the item
-            Item item = (Item)listBox2.Items[e.Index];
-
-            // Start by filling the backgorund
-            if (selected)
-            {
-                using (SolidBrush hiLighB = new SolidBrush(SystemColors.Highlight))
-                    e.Graphics.FillRectangle(hiLighB, e.Bounds);
-            }
-            else
-            {
-                using (SolidBrush backB = new SolidBrush(e.BackColor))
-                    e.Graphics.FillRectangle(backB, e.Bounds);
-            }
-
-            // Draw a small box for the item's color
-            Rectangle box = e.Bounds;
-            box.Height -= 4;
-            box.Width = box.Height;
-            box.X += 2;
-            box.Y += 2;
-            using (SolidBrush backColorB = new SolidBrush(panel5.BackColor))
-                e.Graphics.FillRectangle(backColorB, box);
-            using (Brush styleB = getItemBrush(item.Style, item.Color))
-                e.Graphics.FillRectangle(styleB, box);
-
-            // Draw the item's text
-            string itemText = item.Width + "px W - " + item.Spacing + "px S";
-            using (SolidBrush textB = new SolidBrush(e.ForeColor))
-                e.Graphics.DrawString(itemText, listBox2.Font, textB, box.Right + 2, e.Bounds.Y);
+            (sender as ListBox).Refresh();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        // Remove Line
+        private void Remove_Click(object sender, EventArgs e)
         {
-            listBox1.Refresh();
-        }
+            ListBox listBox = (sender == button2) ? listBox1 : listBox2;
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            listBox2.Refresh();
-        }
-
-        // Remove Horizontal Line
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if ((listBox1.SelectedIndex != -1) && (listBox1.Items.Count == 1))
+            if ((listBox.SelectedIndex != -1) && (listBox.Items.Count == 1))
             {
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+                listBox.Items.RemoveAt(listBox.SelectedIndex);
 
                 FinishTokenUpdate();
             }
-            else if ((listBox1.SelectedIndex != -1) && (listBox1.SelectedIndex < listBox1.Items.Count - 1))
+            else if ((listBox.SelectedIndex != -1) && (listBox.SelectedIndex < listBox.Items.Count - 1))
             {
-                listBox1.SelectedIndex += 1;
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex - 1);
+                listBox.SelectedIndex += 1;
+                listBox.Items.RemoveAt(listBox.SelectedIndex - 1);
 
                 FinishTokenUpdate();
             }
-            else if ((listBox1.SelectedIndex != -1) && (listBox1.SelectedIndex == listBox1.Items.Count - 1))
+            else if ((listBox.SelectedIndex != -1) && (listBox.SelectedIndex == listBox.Items.Count - 1))
             {
-                listBox1.SelectedIndex -= 1;
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex + 1);
+                listBox.SelectedIndex -= 1;
+                listBox.Items.RemoveAt(listBox.SelectedIndex + 1);
 
                 FinishTokenUpdate();
             }
         }
 
-        // Move Up Horizontal Line
-        private void button1_Click(object sender, EventArgs e)
+        // Move Line Up
+        private void MoveUp_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex > 0)
+            ListBox listBox = (sender == button1) ? listBox1 : listBox2;
+
+            if (listBox.SelectedIndex > 0)
             {
-                listBox1.Items.Insert(listBox1.SelectedIndex - 1, listBox1.SelectedItem);
-                listBox1.SelectedIndex -= 2;
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex + 2);
+                listBox.Items.Insert(listBox.SelectedIndex - 1, listBox.SelectedItem);
+                listBox.SelectedIndex -= 2;
+                listBox.Items.RemoveAt(listBox.SelectedIndex + 2);
 
                 FinishTokenUpdate();
             }
         }
 
-        //Move Down Horizontal Line
-        private void button3_Click(object sender, EventArgs e)
+        //Move Line Down
+        private void MoveDown_Click(object sender, EventArgs e)
         {
-            if ((listBox1.SelectedIndex != -1) && (listBox1.SelectedIndex < listBox1.Items.Count - 1))
+            ListBox listBox = (sender == button3) ? listBox1 : listBox2;
+
+            if ((listBox.SelectedIndex != -1) && (listBox.SelectedIndex < listBox.Items.Count - 1))
             {
-                listBox1.Items.Insert(listBox1.SelectedIndex + 2, listBox1.SelectedItem);
-                listBox1.SelectedIndex += 2;
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex - 2);
-
-                FinishTokenUpdate();
-            }
-        }
-
-        // Remove Vertical Line
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if ((listBox2.SelectedIndex != -1) && (listBox2.Items.Count == 1))
-            {
-                listBox2.Items.RemoveAt(listBox2.SelectedIndex);
-
-                FinishTokenUpdate();
-            }
-            else if ((listBox2.SelectedIndex != -1) && (listBox2.SelectedIndex < listBox2.Items.Count - 1))
-            {
-                listBox2.SelectedIndex += 1;
-                listBox2.Items.RemoveAt(listBox2.SelectedIndex - 1);
-
-                FinishTokenUpdate();
-            }
-            else if ((listBox2.SelectedIndex != -1) && (listBox2.SelectedIndex == listBox2.Items.Count - 1))
-            {
-                listBox2.SelectedIndex -= 1;
-                listBox2.Items.RemoveAt(listBox2.SelectedIndex + 1);
-
-                FinishTokenUpdate();
-            }
-        }
-
-        // Move Up Vertical Line
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (listBox2.SelectedIndex > 0)
-            {
-                listBox2.Items.Insert(listBox2.SelectedIndex - 1, listBox2.SelectedItem);
-                listBox2.SelectedIndex -= 2;
-                listBox2.Items.RemoveAt(listBox2.SelectedIndex + 2);
-
-                FinishTokenUpdate();
-            }
-        }
-
-        //Move Down Vertical Line
-        private void button6_Click(object sender, EventArgs e)
-        {
-            if ((listBox2.SelectedIndex != -1) && (listBox2.SelectedIndex < listBox2.Items.Count - 1))
-            {
-                listBox2.Items.Insert(listBox2.SelectedIndex + 2, listBox2.SelectedItem);
-                listBox2.SelectedIndex += 2;
-                listBox2.Items.RemoveAt(listBox2.SelectedIndex - 2);
+                listBox.Items.Insert(listBox.SelectedIndex + 2, listBox.SelectedItem);
+                listBox.SelectedIndex += 2;
+                listBox.Items.RemoveAt(listBox.SelectedIndex - 2);
 
                 FinishTokenUpdate();
             }
