@@ -153,26 +153,29 @@ namespace TartanEffect
         {
             ListBox listBox = (sender == button2) ? listBox1 : listBox2;
 
-            if ((listBox.SelectedIndex != -1) && (listBox.Items.Count == 1))
+            if (listBox.SelectedIndex == -1)
+                return;
+
+            if (listBox.Items.Count == 1)
             {
                 listBox.Items.RemoveAt(listBox.SelectedIndex);
-
-                FinishTokenUpdate();
             }
-            else if ((listBox.SelectedIndex != -1) && (listBox.SelectedIndex < listBox.Items.Count - 1))
+            else if (listBox.SelectedIndex < listBox.Items.Count - 1)
             {
                 listBox.SelectedIndex += 1;
                 listBox.Items.RemoveAt(listBox.SelectedIndex - 1);
-
-                FinishTokenUpdate();
             }
-            else if ((listBox.SelectedIndex != -1) && (listBox.SelectedIndex == listBox.Items.Count - 1))
+            else if (listBox.SelectedIndex == listBox.Items.Count - 1)
             {
                 listBox.SelectedIndex -= 1;
                 listBox.Items.RemoveAt(listBox.SelectedIndex + 1);
-
-                FinishTokenUpdate();
             }
+            else
+            {
+                return;
+            }
+
+            FinishTokenUpdate();
         }
 
         // Move Line Up
