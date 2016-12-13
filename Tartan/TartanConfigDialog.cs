@@ -116,7 +116,6 @@ namespace TartanEffect
             if (DialogResult.OK == colorDialog1.ShowDialog())
             {
                 bgColorBox.BackColor = colorDialog1.Color;
-                //bgColorBox.Refresh();
 
                 FinishTokenUpdate();
             }
@@ -169,9 +168,6 @@ namespace TartanEffect
 
             // Draw the item's text
             string itemText = item.Width + "px W - " + item.Spacing + "px S";
-            //int padHelper = 3 - item.Width.ToString().Length;
-            //string padding = (padHelper == 2) ? "  " : (padHelper == 1) ? " " : "";
-            //string itemText = $"{padding}{item.Width}px W - {item.Spacing} px S";
             using (SolidBrush textB = new SolidBrush(e.ForeColor))
                 e.Graphics.DrawString(itemText, listBox.Font, textB, box.Right + 2, box.Top - (4 * (e.Graphics.DpiY / 96f)));
         }
