@@ -57,7 +57,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.bgColorBox = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pdnColor1 = new Controlz.PdnColor();
@@ -72,7 +72,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.styleBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -80,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.styleBox)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -382,15 +383,15 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // panel5
+            // bgColorBox
             // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Location = new System.Drawing.Point(302, 306);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(80, 20);
-            this.panel5.TabIndex = 17;
-            this.panel5.Click += new System.EventHandler(this.panel5_Click);
+            this.bgColorBox.BackColor = System.Drawing.Color.White;
+            this.bgColorBox.Location = new System.Drawing.Point(302, 306);
+            this.bgColorBox.Name = "bgColorBox";
+            this.bgColorBox.Size = new System.Drawing.Size(80, 20);
+            this.bgColorBox.TabIndex = 17;
+            this.bgColorBox.Click += new System.EventHandler(this.bgColorBox_Click);
+            this.bgColorBox.Paint += new System.Windows.Forms.PaintEventHandler(this.bgColorBox_Paint);
             // 
             // label5
             // 
@@ -513,14 +514,14 @@
             this.saveFileDialog1.Filter = "XML Files (*.xml) | *.xml";
             this.saveFileDialog1.Title = "Save Tartan";
             // 
-            // panel10
+            // styleBox
             // 
-            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel10.Location = new System.Drawing.Point(158, 260);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(20, 20);
-            this.panel10.TabIndex = 36;
-            this.panel10.Paint += new System.Windows.Forms.PaintEventHandler(this.panel10_Paint);
+            this.styleBox.Location = new System.Drawing.Point(158, 260);
+            this.styleBox.Name = "styleBox";
+            this.styleBox.Size = new System.Drawing.Size(20, 20);
+            this.styleBox.TabIndex = 36;
+            this.styleBox.TabStop = false;
+            this.styleBox.Paint += new System.Windows.Forms.PaintEventHandler(this.styleBox_Paint);
             // 
             // TartanConfigDialog
             // 
@@ -530,7 +531,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.button10;
             this.ClientSize = new System.Drawing.Size(484, 377);
-            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.styleBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel9);
@@ -545,7 +546,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.pdnColor1);
-            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.bgColorBox);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -574,6 +575,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.styleBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -609,7 +611,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel bgColorBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private Controlz.PdnColor pdnColor1;
@@ -624,6 +626,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.PictureBox styleBox;
     }
 }

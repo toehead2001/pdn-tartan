@@ -52,24 +52,29 @@ namespace TartanEffect
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            panel10.Invalidate();
-            panel10.Update();
+            styleBox.Refresh();
         }
 
         private void pdnColor1_ValueChanged(object sender, Color e)
         {
-            panel10.Invalidate();
-            panel10.Update();
+            styleBox.Refresh();
         }
 
-        private void panel10_Paint(object sender, PaintEventArgs e)
+        private void styleBox_Paint(object sender, PaintEventArgs e)
         {
+            Rectangle boxRect = e.ClipRectangle;
+            boxRect.Width--;
+            boxRect.Height--;
+
             using (HatchBrush checkered = new HatchBrush(HatchStyle.LargeCheckerBoard, Color.White, Color.Silver))
-                e.Graphics.FillRectangle(checkered, 0, 0, panel10.Width, panel10.Height);
+                e.Graphics.FillRectangle(checkered, boxRect);
             using (Brush style = getItemBrush(comboBox1.SelectedIndex, pdnColor1.Argb))
-                e.Graphics.FillRectangle(style, 0, 0, panel10.Width, panel10.Height);
-            using (Pen previewOutline = new Pen(Color.White, 1))
-                e.Graphics.DrawRectangle(previewOutline, 0, 0, panel10.Width - 3, panel10.Height - 3);
+                e.Graphics.FillRectangle(style, boxRect);
+            e.Graphics.DrawRectangle(Pens.Black, boxRect);
+            boxRect.Width -= 2;
+            boxRect.Height -= 2;
+            boxRect.Offset(1, 1);
+            e.Graphics.DrawRectangle(Pens.White, boxRect);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -106,14 +111,27 @@ namespace TartanEffect
             FinishTokenUpdate();
         }
 
-        private void panel5_Click(object sender, EventArgs e)
+        private void bgColorBox_Click(object sender, EventArgs e)
         {
             if (DialogResult.OK == colorDialog1.ShowDialog())
             {
-                panel5.BackColor = colorDialog1.Color;
+                bgColorBox.BackColor = colorDialog1.Color;
+                //bgColorBox.Refresh();
 
                 FinishTokenUpdate();
             }
+        }
+
+        private void bgColorBox_Paint(object sender, PaintEventArgs e)
+        {
+            Rectangle boxRect = e.ClipRectangle;
+            boxRect.Width--;
+            boxRect.Height--;
+            e.Graphics.DrawRectangle(Pens.Black, boxRect);
+            boxRect.Width -= 2;
+            boxRect.Height -= 2;
+            boxRect.Offset(1, 1);
+            e.Graphics.DrawRectangle(Pens.White, boxRect);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -144,7 +162,7 @@ namespace TartanEffect
             box.Width = box.Height;
             box.X += 2;
             box.Y += 2;
-            using (SolidBrush backColorB = new SolidBrush(panel5.BackColor))
+            using (SolidBrush backColorB = new SolidBrush(bgColorBox.BackColor))
                 e.Graphics.FillRectangle(backColorB, box);
             using (Brush styleB = getItemBrush(item.Style, item.Color))
                 e.Graphics.FillRectangle(styleB, box);
@@ -301,7 +319,7 @@ namespace TartanEffect
                 listBox2.Items.Add(item);
             }
 
-            panel5.BackColor = effectTokenCopy.BackColor;
+            bgColorBox.BackColor = effectTokenCopy.BackColor;
 
             checkBox1.Checked = effectTokenCopy.OneSet;
         }
@@ -324,7 +342,7 @@ namespace TartanEffect
                 writeValuesHere.VerLines.Add(new Item(item.Width, item.Spacing, item.Style, item.Color));
             }
 
-            writeValuesHere.BackColor = panel5.BackColor;
+            writeValuesHere.BackColor = bgColorBox.BackColor;
 
             writeValuesHere.OneSet = checkBox1.Checked;
         }
