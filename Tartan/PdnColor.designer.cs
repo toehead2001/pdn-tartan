@@ -64,7 +64,7 @@
             // bLabel
             // 
             this.bLabel.AutoSize = true;
-            this.bLabel.Location = new System.Drawing.Point(188, 58);
+            this.bLabel.Location = new System.Drawing.Point(188, 63);
             this.bLabel.Name = "bLabel";
             this.bLabel.Size = new System.Drawing.Size(17, 13);
             this.bLabel.TabIndex = 5;
@@ -73,7 +73,7 @@
             // gLabel
             // 
             this.gLabel.AutoSize = true;
-            this.gLabel.Location = new System.Drawing.Point(188, 30);
+            this.gLabel.Location = new System.Drawing.Point(188, 35);
             this.gLabel.Name = "gLabel";
             this.gLabel.Size = new System.Drawing.Size(18, 13);
             this.gLabel.TabIndex = 4;
@@ -82,7 +82,7 @@
             // rLabel
             // 
             this.rLabel.AutoSize = true;
-            this.rLabel.Location = new System.Drawing.Point(188, 2);
+            this.rLabel.Location = new System.Drawing.Point(188, 7);
             this.rLabel.Name = "rLabel";
             this.rLabel.Size = new System.Drawing.Size(17, 13);
             this.rLabel.TabIndex = 3;
@@ -91,7 +91,7 @@
             // blueBox
             // 
             this.blueBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.blueBox.Location = new System.Drawing.Point(211, 56);
+            this.blueBox.Location = new System.Drawing.Point(211, 61);
             this.blueBox.Maximum = new decimal(new int[] {
             255,
             0,
@@ -109,7 +109,7 @@
             // greenBox
             // 
             this.greenBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.greenBox.Location = new System.Drawing.Point(211, 28);
+            this.greenBox.Location = new System.Drawing.Point(211, 33);
             this.greenBox.Maximum = new decimal(new int[] {
             255,
             0,
@@ -127,7 +127,7 @@
             // redBox
             // 
             this.redBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.redBox.Location = new System.Drawing.Point(211, 0);
+            this.redBox.Location = new System.Drawing.Point(211, 5);
             this.redBox.Maximum = new decimal(new int[] {
             255,
             0,

@@ -107,7 +107,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(222, 25);
+            this.numericUpDown1.Location = new System.Drawing.Point(222, 26);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -224,7 +224,7 @@
             // trackBar1
             // 
             this.trackBar1.AutoSize = false;
-            this.trackBar1.Location = new System.Drawing.Point(12, 25);
+            this.trackBar1.Location = new System.Drawing.Point(12, 26);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
@@ -238,7 +238,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 59);
+            this.label2.Location = new System.Drawing.Point(9, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 13);
             this.label2.TabIndex = 18;
@@ -247,7 +247,7 @@
             // trackBar2
             // 
             this.trackBar2.AutoSize = false;
-            this.trackBar2.Location = new System.Drawing.Point(12, 77);
+            this.trackBar2.Location = new System.Drawing.Point(12, 75);
             this.trackBar2.Maximum = 100;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(203, 24);
@@ -259,7 +259,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(222, 77);
+            this.numericUpDown2.Location = new System.Drawing.Point(222, 75);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(50, 22);
             this.numericUpDown2.TabIndex = 3;
@@ -284,7 +284,7 @@
             "Dots - 50/50"});
             this.comboBox1.Location = new System.Drawing.Point(11, 260);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(130, 21);
+            this.comboBox1.Size = new System.Drawing.Size(140, 21);
             this.comboBox1.TabIndex = 5;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -300,7 +300,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 112);
+            this.label4.Location = new System.Drawing.Point(9, 107);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 20;
@@ -415,7 +415,7 @@
             // 
             this.pdnColor1.Argb = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pdnColor1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pdnColor1.Location = new System.Drawing.Point(12, 129);
+            this.pdnColor1.Location = new System.Drawing.Point(12, 124);
             this.pdnColor1.Margin = new System.Windows.Forms.Padding(0);
             this.pdnColor1.Name = "pdnColor1";
             this.pdnColor1.Size = new System.Drawing.Size(260, 110);
@@ -425,7 +425,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel4.Location = new System.Drawing.Point(13, 66);
+            this.panel4.Location = new System.Drawing.Point(13, 63);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(260, 1);
             this.panel4.TabIndex = 19;
@@ -433,7 +433,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel6.Location = new System.Drawing.Point(11, 248);
+            this.panel6.Location = new System.Drawing.Point(11, 246);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(260, 1);
             this.panel6.TabIndex = 23;
@@ -441,7 +441,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel7.Location = new System.Drawing.Point(13, 118);
+            this.panel7.Location = new System.Drawing.Point(13, 112);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(260, 1);
             this.panel7.TabIndex = 21;
@@ -449,7 +449,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel8.Location = new System.Drawing.Point(13, 295);
+            this.panel8.Location = new System.Drawing.Point(13, 294);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(260, 1);
             this.panel8.TabIndex = 25;
@@ -465,7 +465,7 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel9.Location = new System.Drawing.Point(302, 295);
+            this.panel9.Location = new System.Drawing.Point(302, 294);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(170, 1);
             this.panel9.TabIndex = 27;
@@ -516,7 +516,7 @@
             // 
             // styleBox
             // 
-            this.styleBox.Location = new System.Drawing.Point(158, 260);
+            this.styleBox.Location = new System.Drawing.Point(160, 260);
             this.styleBox.Name = "styleBox";
             this.styleBox.Size = new System.Drawing.Size(20, 20);
             this.styleBox.TabIndex = 36;
