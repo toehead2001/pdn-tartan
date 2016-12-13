@@ -155,7 +155,7 @@ namespace TartanEffect
             //string padding = (padHelper == 2) ? "  " : (padHelper == 1) ? " " : "";
             //string itemText = $"{padding}{item.Width}px W - {item.Spacing} px S";
             using (SolidBrush textB = new SolidBrush(e.ForeColor))
-                e.Graphics.DrawString(itemText, listBox.Font, textB, box.Right + 2, e.Bounds.Y);
+                e.Graphics.DrawString(itemText, listBox.Font, textB, box.Right + 2, box.Top - (4 * (e.Graphics.DpiY / 96f)));
         }
 
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)

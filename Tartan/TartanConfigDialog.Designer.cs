@@ -113,7 +113,7 @@
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(50, 22);
             this.numericUpDown1.TabIndex = 1;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDown1.Value = new decimal(new int[] {
@@ -216,7 +216,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Line Width";
             // 
@@ -238,7 +238,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.Size = new System.Drawing.Size(100, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Spacing After Line";
             // 
@@ -258,7 +258,7 @@
             // 
             this.numericUpDown2.Location = new System.Drawing.Point(222, 77);
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(50, 22);
             this.numericUpDown2.TabIndex = 3;
             this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDown2.Value = new decimal(new int[] {
@@ -290,7 +290,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 241);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 13;
             this.label3.Text = "Line Style";
             // 
@@ -299,7 +299,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(9, 112);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 14;
             this.label4.Text = "Line Color";
             // 
@@ -374,7 +374,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(302, 266);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(165, 17);
+            this.checkBox1.Size = new System.Drawing.Size(179, 17);
             this.checkBox1.TabIndex = 18;
             this.checkBox1.Text = "Use Horizontal set for Vertical";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -395,7 +395,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(299, 289);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.Size = new System.Drawing.Size(101, 13);
             this.label5.TabIndex = 26;
             this.label5.Text = "Background Color";
             // 
@@ -404,7 +404,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(9, 289);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.Size = new System.Drawing.Size(51, 13);
             this.label6.TabIndex = 27;
             this.label6.Text = "Add to...";
             // 
@@ -559,6 +559,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.numericUpDown1);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "TartanConfigDialog";
             this.Text = "Tartan";
