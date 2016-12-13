@@ -67,7 +67,7 @@
             this.bLabel.Location = new System.Drawing.Point(188, 58);
             this.bLabel.Name = "bLabel";
             this.bLabel.Size = new System.Drawing.Size(17, 13);
-            this.bLabel.TabIndex = 30;
+            this.bLabel.TabIndex = 5;
             this.bLabel.Text = "B:";
             // 
             // gLabel
@@ -76,7 +76,7 @@
             this.gLabel.Location = new System.Drawing.Point(188, 30);
             this.gLabel.Name = "gLabel";
             this.gLabel.Size = new System.Drawing.Size(18, 13);
-            this.gLabel.TabIndex = 31;
+            this.gLabel.TabIndex = 4;
             this.gLabel.Text = "G:";
             // 
             // rLabel
@@ -85,7 +85,7 @@
             this.rLabel.Location = new System.Drawing.Point(188, 2);
             this.rLabel.Name = "rLabel";
             this.rLabel.Size = new System.Drawing.Size(17, 13);
-            this.rLabel.TabIndex = 32;
+            this.rLabel.TabIndex = 3;
             this.rLabel.Text = "R:";
             // 
             // blueBox
@@ -99,7 +99,7 @@
             0});
             this.blueBox.Name = "blueBox";
             this.blueBox.Size = new System.Drawing.Size(49, 22);
-            this.blueBox.TabIndex = 27;
+            this.blueBox.TabIndex = 2;
             this.blueBox.Tag = "0";
             this.blueBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.blueBox.ValueChanged += new System.EventHandler(this.ARGB_ValueChanged);
@@ -117,7 +117,7 @@
             0});
             this.greenBox.Name = "greenBox";
             this.greenBox.Size = new System.Drawing.Size(49, 22);
-            this.greenBox.TabIndex = 26;
+            this.greenBox.TabIndex = 1;
             this.greenBox.Tag = "0";
             this.greenBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.greenBox.ValueChanged += new System.EventHandler(this.ARGB_ValueChanged);
@@ -135,8 +135,7 @@
             0});
             this.redBox.Name = "redBox";
             this.redBox.Size = new System.Drawing.Size(49, 22);
-            this.redBox.TabIndex = 25;
-            this.redBox.TabStop = false;
+            this.redBox.TabIndex = 0;
             this.redBox.Tag = "0";
             this.redBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.redBox.ValueChanged += new System.EventHandler(this.ARGB_ValueChanged);

@@ -90,7 +90,7 @@
             this.listBox1.Location = new System.Drawing.Point(6, 19);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(126, 95);
-            this.listBox1.TabIndex = 9;
+            this.listBox1.TabIndex = 0;
             this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
@@ -101,7 +101,7 @@
             this.listBox2.Location = new System.Drawing.Point(6, 19);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(126, 95);
-            this.listBox2.TabIndex = 13;
+            this.listBox2.TabIndex = 0;
             this.listBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
@@ -133,7 +133,7 @@
             this.groupBox1.Location = new System.Drawing.Point(302, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(170, 121);
-            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Horizontal Set";
             // 
@@ -142,7 +142,7 @@
             this.button3.Location = new System.Drawing.Point(138, 48);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(26, 23);
-            this.button3.TabIndex = 11;
+            this.button3.TabIndex = 2;
             this.button3.Text = "▼";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.MoveDown_Click);
@@ -153,7 +153,7 @@
             this.button2.Location = new System.Drawing.Point(138, 92);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(26, 23);
-            this.button2.TabIndex = 12;
+            this.button2.TabIndex = 3;
             this.button2.Text = "X";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Remove_Click);
@@ -163,7 +163,7 @@
             this.button1.Location = new System.Drawing.Point(138, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(26, 23);
-            this.button1.TabIndex = 10;
+            this.button1.TabIndex = 1;
             this.button1.Text = "▲";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.MoveUp_Click);
@@ -177,7 +177,7 @@
             this.groupBox2.Location = new System.Drawing.Point(302, 139);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(170, 121);
-            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Vertical Set";
             // 
@@ -186,7 +186,7 @@
             this.button6.Location = new System.Drawing.Point(138, 48);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(26, 23);
-            this.button6.TabIndex = 15;
+            this.button6.TabIndex = 2;
             this.button6.Text = "▼";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.MoveDown_Click);
@@ -197,7 +197,7 @@
             this.button5.Location = new System.Drawing.Point(138, 92);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(26, 23);
-            this.button5.TabIndex = 16;
+            this.button5.TabIndex = 3;
             this.button5.Text = "X";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Remove_Click);
@@ -207,7 +207,7 @@
             this.button4.Location = new System.Drawing.Point(138, 19);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(26, 23);
-            this.button4.TabIndex = 14;
+            this.button4.TabIndex = 1;
             this.button4.Text = "▲";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.MoveUp_Click);
@@ -218,7 +218,7 @@
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 7;
+            this.label1.TabIndex = 16;
             this.label1.Text = "Line Width";
             // 
             // trackBar1
@@ -241,7 +241,7 @@
             this.label2.Location = new System.Drawing.Point(9, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 13);
-            this.label2.TabIndex = 9;
+            this.label2.TabIndex = 18;
             this.label2.Text = "Spacing After Line";
             // 
             // trackBar2
@@ -285,7 +285,7 @@
             this.comboBox1.Location = new System.Drawing.Point(11, 260);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(130, 21);
-            this.comboBox1.TabIndex = 4;
+            this.comboBox1.TabIndex = 5;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label3
@@ -294,7 +294,7 @@
             this.label3.Location = new System.Drawing.Point(9, 241);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 13;
+            this.label3.TabIndex = 22;
             this.label3.Text = "Line Style";
             // 
             // label4
@@ -303,7 +303,7 @@
             this.label4.Location = new System.Drawing.Point(9, 112);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
-            this.label4.TabIndex = 14;
+            this.label4.TabIndex = 20;
             this.label4.Text = "Line Color";
             // 
             // button7
@@ -342,7 +342,7 @@
             this.button10.Location = new System.Drawing.Point(397, 347);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 20;
+            this.button10.TabIndex = 15;
             this.button10.Text = "Cancel";
             this.button10.UseVisualStyleBackColor = true;
             // 
@@ -352,7 +352,7 @@
             this.button11.Location = new System.Drawing.Point(316, 347);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 19;
+            this.button11.TabIndex = 14;
             this.button11.Text = "OK";
             this.button11.UseVisualStyleBackColor = true;
             // 
@@ -362,7 +362,7 @@
             this.panel2.Location = new System.Drawing.Point(12, 337);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(460, 1);
-            this.panel2.TabIndex = 21;
+            this.panel2.TabIndex = 28;
             // 
             // panel3
             // 
@@ -370,7 +370,7 @@
             this.panel3.Location = new System.Drawing.Point(287, 12);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1, 325);
-            this.panel3.TabIndex = 22;
+            this.panel3.TabIndex = 29;
             // 
             // checkBox1
             // 
@@ -378,7 +378,7 @@
             this.checkBox1.Location = new System.Drawing.Point(302, 266);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(179, 17);
-            this.checkBox1.TabIndex = 18;
+            this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "Use Horizontal set for Vertical";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -389,7 +389,7 @@
             this.bgColorBox.Location = new System.Drawing.Point(302, 306);
             this.bgColorBox.Name = "bgColorBox";
             this.bgColorBox.Size = new System.Drawing.Size(80, 20);
-            this.bgColorBox.TabIndex = 17;
+            this.bgColorBox.TabIndex = 12;
             this.bgColorBox.Click += new System.EventHandler(this.bgColorBox_Click);
             this.bgColorBox.Paint += new System.Windows.Forms.PaintEventHandler(this.bgColorBox_Paint);
             // 
@@ -408,7 +408,7 @@
             this.label6.Location = new System.Drawing.Point(9, 289);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 13);
-            this.label6.TabIndex = 27;
+            this.label6.TabIndex = 24;
             this.label6.Text = "Add to...";
             // 
             // pdnColor1
@@ -419,7 +419,7 @@
             this.pdnColor1.Margin = new System.Windows.Forms.Padding(0);
             this.pdnColor1.Name = "pdnColor1";
             this.pdnColor1.Size = new System.Drawing.Size(260, 110);
-            this.pdnColor1.TabIndex = 5;
+            this.pdnColor1.TabIndex = 4;
             this.pdnColor1.ValueChanged += new Controlz.PdnColor.ValueChangedEventHandler(this.pdnColor1_ValueChanged);
             // 
             // panel4
@@ -428,7 +428,7 @@
             this.panel4.Location = new System.Drawing.Point(13, 66);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(260, 1);
-            this.panel4.TabIndex = 29;
+            this.panel4.TabIndex = 19;
             // 
             // panel6
             // 
@@ -436,7 +436,7 @@
             this.panel6.Location = new System.Drawing.Point(11, 248);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(260, 1);
-            this.panel6.TabIndex = 30;
+            this.panel6.TabIndex = 23;
             // 
             // panel7
             // 
@@ -444,7 +444,7 @@
             this.panel7.Location = new System.Drawing.Point(13, 118);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(260, 1);
-            this.panel7.TabIndex = 31;
+            this.panel7.TabIndex = 21;
             // 
             // panel8
             // 
@@ -452,7 +452,7 @@
             this.panel8.Location = new System.Drawing.Point(13, 295);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(260, 1);
-            this.panel8.TabIndex = 32;
+            this.panel8.TabIndex = 25;
             // 
             // panel1
             // 
@@ -460,7 +460,7 @@
             this.panel1.Location = new System.Drawing.Point(13, 14);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(260, 1);
-            this.panel1.TabIndex = 33;
+            this.panel1.TabIndex = 17;
             // 
             // panel9
             // 
@@ -468,7 +468,7 @@
             this.panel9.Location = new System.Drawing.Point(302, 295);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(170, 1);
-            this.panel9.TabIndex = 34;
+            this.panel9.TabIndex = 27;
             // 
             // toolStrip1
             // 
@@ -482,7 +482,7 @@
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(107, 25);
-            this.toolStrip1.TabIndex = 35;
+            this.toolStrip1.TabIndex = 13;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripButton1
