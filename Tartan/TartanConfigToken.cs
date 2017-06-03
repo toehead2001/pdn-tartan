@@ -7,17 +7,12 @@ namespace TartanEffect
 {
     public class TartanConfigToken : EffectConfigToken
     {
-        private List<Item> horLines = new List<Item>();
-        private List<Item> verLines = new List<Item>();
-        bool oneSet = true;
-        Color backColor = Color.White;
-
-        public TartanConfigToken() : base()
+        internal TartanConfigToken()
         {
-            this.HorLines = horLines;
-            this.VerLines = verLines;
-            this.OneSet = oneSet;
-            this.BackColor = backColor;
+            this.HorLines = new List<Item>();
+            this.VerLines = new List<Item>();
+            this.OneSet = true;
+            this.BackColor = Color.White;
         }
 
         private TartanConfigToken(TartanConfigToken copyMe)
@@ -33,32 +28,16 @@ namespace TartanEffect
             return new TartanConfigToken(this);
         }
 
-        public List<Item> HorLines
-        {
-            get;
-            set;
-        }
-        public List<Item> VerLines
-        {
-            get;
-            set;
-        }
-        public bool OneSet
-        {
-            get;
-            set;
-        }
+        public List<Item> HorLines { get; }
+        public List<Item> VerLines { get; }
+        public bool OneSet { get; set; }
         [XmlIgnore]
-        public Color BackColor
-        {
-            get;
-            set;
-        }        
+        public Color BackColor { get; set; }
         [XmlElement("BackColor")]
-        public string ClrGridHtml
+        public string BackColorHtml
         {
-            get { return ColorTranslator.ToHtml(BackColor); }
-            set { BackColor = ColorTranslator.FromHtml(value); }
+            get => ColorTranslator.ToHtml(BackColor);
+            set => BackColor = ColorTranslator.FromHtml(value);
         }
     }
 }

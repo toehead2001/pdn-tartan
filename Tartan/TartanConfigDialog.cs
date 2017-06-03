@@ -396,18 +396,18 @@ namespace TartanEffect
 
     public class Item
     {
-        public int Width;
-        public int Spacing;
-        public int Style;
+        public int Width { get; set; }
+        public int Spacing { get; set; }
+        public int Style { get; set; }
 
         [XmlIgnore]
-        public Color Color;
+        public Color Color { get; set; }
 
         [XmlElement("Color")]
-        public string ClrGridHtml
+        public string ColorHtml
         {
-            get { return ColorTranslator.ToHtml(Color); }
-            set { Color = ColorTranslator.FromHtml(value); }
+            get => ColorTranslator.ToHtml(Color);
+            set => Color = ColorTranslator.FromHtml(value);
         }
 
         public Item(int width, int spacing, int style, Color color)
