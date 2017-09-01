@@ -68,7 +68,7 @@ namespace TartanEffect
 
             using (HatchBrush checkered = new HatchBrush(HatchStyle.LargeCheckerBoard, Color.White, Color.Silver))
                 e.Graphics.FillRectangle(checkered, boxRect);
-            using (Brush style = getItemBrush(LineStyleComboBox.SelectedIndex, LineColorWheel.Color))
+            using (Brush style = GetItemBrush(LineStyleComboBox.SelectedIndex, LineColorWheel.Color))
                 e.Graphics.FillRectangle(style, boxRect);
             e.Graphics.DrawRectangle(Pens.Black, boxRect);
             boxRect.Width -= 2;
@@ -162,7 +162,7 @@ namespace TartanEffect
             box.Y += 2;
             using (SolidBrush backColorB = new SolidBrush(BackgroundColorBox.BackColor))
                 e.Graphics.FillRectangle(backColorB, box);
-            using (Brush styleB = getItemBrush(item.Style, item.Color))
+            using (Brush styleB = GetItemBrush(item.Style, item.Color))
                 e.Graphics.FillRectangle(styleB, box);
 
             // Draw the item's text
@@ -228,7 +228,7 @@ namespace TartanEffect
         {
             ListBox listBox = (sender == HorMoveDown) ? HorListBox : VerListBox;
 
-            if ((listBox.SelectedIndex != -1) && (listBox.SelectedIndex < listBox.Items.Count - 1))
+            if (listBox.SelectedIndex != -1 && listBox.SelectedIndex < listBox.Items.Count - 1)
             {
                 listBox.Items.Insert(listBox.SelectedIndex + 2, listBox.SelectedItem);
                 listBox.SelectedIndex += 2;
@@ -240,58 +240,52 @@ namespace TartanEffect
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            try
             {
-                try
+                using (FileStream fs = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read))
                 {
-                    using (FileStream fs = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read))
-                    {
-                        XmlSerializer serializer = new XmlSerializer(typeof(TartanConfigToken));
-                        TartanConfigToken token = (TartanConfigToken)serializer.Deserialize(fs);
+                    XmlSerializer serializer = new XmlSerializer(typeof(TartanConfigToken));
+                    TartanConfigToken token = (TartanConfigToken)serializer.Deserialize(fs);
 
-                        this.InitDialogFromToken(token);
+                    this.InitDialogFromToken(token);
+                }
 
-                        FinishTokenUpdate();
-                    }
-                }
-                catch (IOException ex)
-                {
-                    MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (InvalidOperationException ex)
-                {
-                    string message = ex.Message;
-                    if (ex.InnerException != null)
-                    {
-                        message = ex.InnerException.Message; // The XMLSerializer class wraps most Exceptions in an InvalidOperationException.
-                    }
-
-                    MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                FinishTokenUpdate();
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (InvalidOperationException ex)
+            {
+                string message = ex.InnerException?.Message ?? ex.Message;
+                MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog1.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            if (saveFileDialog1.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            try
             {
-                try
+                using (FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write))
                 {
-                    using (FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write))
-                    {
-                        XmlSerializer serializer = new XmlSerializer(typeof(TartanConfigToken));
-                        serializer.Serialize(fs, (TartanConfigToken)theEffectToken);
-                    }
+                    XmlSerializer serializer = new XmlSerializer(typeof(TartanConfigToken));
+                    serializer.Serialize(fs, (TartanConfigToken)theEffectToken);
                 }
-                catch (IOException ex)
-                {
-                    MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         #region EffectConfigDialog stuff
-
         protected override TartanConfigToken CreateInitialToken()
         {
             return new TartanConfigToken();
@@ -303,16 +297,10 @@ namespace TartanEffect
             VerListBox.Items.Clear();
 
             foreach (Item lineItem in effectTokenCopy.HorLines)
-            {
-                Item item = new Item(lineItem.Width, lineItem.Spacing, lineItem.Style, lineItem.Color);
-                HorListBox.Items.Add(item);
-            }
+                HorListBox.Items.Add(lineItem);
 
             foreach (Item lineItem in effectTokenCopy.VerLines)
-            {
-                Item item = new Item(lineItem.Width, lineItem.Spacing, lineItem.Style, lineItem.Color);
-                VerListBox.Items.Add(item);
-            }
+                VerListBox.Items.Add(lineItem);
 
             BackgroundColorBox.BackColor = effectTokenCopy.BackColor;
 
@@ -323,25 +311,16 @@ namespace TartanEffect
         {
             writeValuesHere.HorLines.Clear();
             for (int i = 0; i < HorListBox.Items.Count; i++)
-            {
-                Item item = (Item)HorListBox.Items[i];
-
-                writeValuesHere.HorLines.Add(new Item(item.Width, item.Spacing, item.Style, item.Color));
-            }
+                writeValuesHere.HorLines.Add((Item)HorListBox.Items[i]);
 
             writeValuesHere.VerLines.Clear();
             for (int i = 0; i < VerListBox.Items.Count; i++)
-            {
-                Item item = (Item)VerListBox.Items[i];
-
-                writeValuesHere.VerLines.Add(new Item(item.Width, item.Spacing, item.Style, item.Color));
-            }
+                writeValuesHere.VerLines.Add((Item)VerListBox.Items[i]);
 
             writeValuesHere.BackColor = BackgroundColorBox.BackColor;
 
             writeValuesHere.OneSet = UseHorForVer.Checked;
         }
-
         #endregion
 
         private void ListButtonStates(int listBox)
@@ -361,7 +340,7 @@ namespace TartanEffect
             }
         }
 
-        static Brush getItemBrush(int style, Color color)
+        private static Brush GetItemBrush(int style, Color color)
         {
             Brush itemBrush;
             switch (style)
@@ -390,10 +369,9 @@ namespace TartanEffect
             }
             return itemBrush;
         }
-
     }
 
-    public class Item
+    public struct Item
     {
         public int Width { get; set; }
         public int Spacing { get; set; }
@@ -415,10 +393,6 @@ namespace TartanEffect
             Width = width;
             Style = style;
             Color = color;
-        }
-
-        public Item()
-        {
         }
     }
 }
