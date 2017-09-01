@@ -166,7 +166,7 @@ namespace TartanEffect
                 e.Graphics.FillRectangle(styleB, box);
 
             // Draw the item's text
-            string itemText = item.Width + "px W - " + item.Spacing + "px S";
+            string itemText = $"{item.Width} px W - {item.Spacing} px S";
             using (SolidBrush textB = new SolidBrush(e.ForeColor))
                 e.Graphics.DrawString(itemText, listBox.Font, textB, box.Right + 2, box.Top - (4 * (e.Graphics.DpiY / 96f)));
         }
