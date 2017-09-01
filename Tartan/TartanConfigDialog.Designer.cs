@@ -413,7 +413,7 @@
             // 
             // pdnColor1
             // 
-            this.pdnColor1.Argb = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pdnColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pdnColor1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pdnColor1.Location = new System.Drawing.Point(12, 124);
             this.pdnColor1.Margin = new System.Windows.Forms.Padding(0);

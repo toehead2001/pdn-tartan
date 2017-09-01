@@ -2,9 +2,11 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.ComponentModel;
 
 namespace Controlz
 {
+    [DefaultEvent("ValueChanged")]
     public partial class PdnColor : UserControl
     {
         bool mouseDown;
@@ -29,25 +31,10 @@ namespace Controlz
         }
 
         #region Control Properties
-        public double Hue
+        [Category("Data")]
+        public Color Color
         {
-            get { return MasterHue * 360; }
-        }
-        public double Sat
-        {
-            get { return MasterSat * 100; }
-        }
-        public double Val
-        {
-            get { return MasterVal * 100; }
-        }
-        public int Alpha
-        {
-            get { return MasterAlpha; }
-        }
-        public Color Argb
-        {
-            get { return HSVtoRGB(MasterAlpha, MasterHue, MasterSat, MasterVal); }
+            get => HSVtoRGB(MasterAlpha, MasterHue, MasterSat, MasterVal);
             set
             {
                 Color _colorval = value;
@@ -66,6 +53,7 @@ namespace Controlz
 
         #region Event Handler
         public delegate void ValueChangedEventHandler(object sender, Color e);
+        [Category("Action")]
         public event ValueChangedEventHandler ValueChanged;
         protected void OnValueChanged(Color e)
         {
@@ -408,33 +396,20 @@ namespace Controlz
         #endregion
     }
 
-    public class HSVColor
+    internal struct HSVColor
     {
-        public double Hue
-        {
-            get;
-            set;
-        }
-        public double Sat
-        {
-            get;
-            set;
-        }
-        public double Value
-        {
-            get;
-            set;
-        }
+        internal double Hue { get; set; }
+        internal double Sat { get; set; }
+        internal double Value { get; set; }
     }
 
+    [DefaultEvent("ValueChanged")]
     public class ColorSlider : PictureBox
     {
+        [Category("Data")]
         public float Value
         {
-            get
-            {
-                return this.value;
-            }
+            get => this.value;
             set
             {
                 this.value = value;
@@ -442,23 +417,16 @@ namespace Controlz
                 this.Refresh();
             }
         }
+        [Category("Behavior")]
         public int MaxValue
         {
-            get
-            {
-                return this.maxValue;
-            }
-            set
-            {
-                this.maxValue = value;
-            }
+            get => this.maxValue;
+            set => this.maxValue = value;
         }
+        [Category("Appearance")]
         public Color[] Colors
         {
-            get
-            {
-                return this.colors;
-            }
+            get => this.colors;
             set
             {
                 this.colors = value;
@@ -468,6 +436,7 @@ namespace Controlz
 
         #region Event handler
         public delegate void ValueChangedEventHandler(object sender, float value);
+        [Category("Action")]
         public event ValueChangedEventHandler ValueChanged;
         #endregion
 
@@ -478,27 +447,23 @@ namespace Controlz
         bool isMouseOver;
         bool isMouseDown;
 
-
         public ColorSlider()
         {
             this.Width = 20;
             this.Height = 102;
-
-            this.Paint += ColorSlider_Paint;
-            this.MouseEnter += ColorSlider_MouseEnter;
-            this.MouseLeave += ColorSlider_MouseLeave;
-            this.MouseDown += ColorSlider_MouseDown;
-            this.MouseMove += ColorSlider_MouseMove;
-            this.MouseUp += ColorSlider_MouseUp;
         }
 
-        private void ColorSlider_MouseUp(object sender, MouseEventArgs e)
+        protected override void OnMouseUp(MouseEventArgs e)
         {
+            base.OnMouseUp(e);
+
             isMouseDown = false;
         }
 
-        private void ColorSlider_MouseMove(object sender, MouseEventArgs e)
+        protected override void OnMouseMove(MouseEventArgs e)
         {
+            base.OnMouseMove(e);
+
             if (!isMouseDown)
                 return;
 
@@ -512,30 +477,37 @@ namespace Controlz
             ValueChanged?.Invoke(this, this.value);
         }
 
-        private void ColorSlider_MouseDown(object sender, MouseEventArgs e)
+        protected override void OnMouseDown(MouseEventArgs e)
         {
+            base.OnMouseDown(e);
+
             isMouseDown = true;
-            ColorSlider_MouseMove(sender, e);
+            OnMouseMove(e);
         }
 
-        private void ColorSlider_MouseEnter(object sender, System.EventArgs e)
+        protected override void OnMouseEnter(EventArgs e)
         {
+            base.OnMouseEnter(e);
+
             isMouseOver = true;
             this.Refresh();
         }
 
-        private void ColorSlider_MouseLeave(object sender, System.EventArgs e)
+        protected override void OnMouseLeave(EventArgs e)
         {
+            base.OnMouseLeave(e);
+
             isMouseOver = false;
             this.Refresh();
         }
 
-        private void ColorSlider_Paint(object sender, PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs pe)
         {
-            DrawMarker();
-            e.Graphics.DrawImage(markerBmp, 0, 0);
-        }
+            base.OnPaint(pe);
 
+            DrawMarker();
+            pe.Graphics.DrawImage(markerBmp, 0, 0);
+        }
 
         private void DrawMarker()
         {
@@ -592,7 +564,6 @@ namespace Controlz
             }
         }
 
-
         private void DrawColors()
         {
             if (this.Image == null || this.Image.Size != this.ClientSize)
@@ -615,6 +586,5 @@ namespace Controlz
         {
             return (value < min) ? min : (value > max) ? max : value;
         }
-
     }
 }
