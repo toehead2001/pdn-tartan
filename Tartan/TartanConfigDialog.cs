@@ -17,50 +17,50 @@ namespace TartanEffect
 
         private void TartanConfigDialog_Load(object sender, EventArgs e)
         {
-            pdnColor1.Color = Effect.EnvironmentParameters.PrimaryColor;
-            comboBox1.SelectedIndex = 0;
+            LineColorWheel.Color = Effect.EnvironmentParameters.PrimaryColor;
+            LineStyleComboBox.SelectedIndex = 0;
             ListButtonStates(0);
 
             float DPI = this.AutoScaleDimensions.Width / 96f;
-            listBox1.ItemHeight = (int)(listBox1.ItemHeight * DPI);
-            listBox1.Size = new Size((int)(126 * DPI), (int)(95 * DPI));
-            listBox2.ItemHeight = (int)(listBox2.ItemHeight * DPI);
-            listBox2.Size = new Size((int)(126 * DPI), (int)(95 * DPI));
+            HorListBox.ItemHeight = (int)(HorListBox.ItemHeight * DPI);
+            HorListBox.Size = new Size((int)(126 * DPI), (int)(95 * DPI));
+            VerListBox.ItemHeight = (int)(VerListBox.ItemHeight * DPI);
+            VerListBox.Size = new Size((int)(126 * DPI), (int)(95 * DPI));
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void LineWidthTrackBar_Scroll(object sender, EventArgs e)
         {
-            numericUpDown1.Value = trackBar1.Value;
+            LineWidthNumBox.Value = LineWidthTrackBar.Value;
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void LineWidthNumBox_ValueChanged(object sender, EventArgs e)
         {
-            trackBar1.Value = (int)numericUpDown1.Value;
+            LineWidthTrackBar.Value = (int)LineWidthNumBox.Value;
         }
 
-        private void trackBar2_Scroll(object sender, EventArgs e)
+        private void LineSpaceTrackBar_Scroll(object sender, EventArgs e)
         {
-            numericUpDown2.Value = trackBar2.Value;
+            LineSpaceNumBox.Value = LineSpaceTrackBar.Value;
 
         }
 
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        private void LineSpaceNumBox_ValueChanged(object sender, EventArgs e)
         {
-            trackBar2.Value = (int)numericUpDown2.Value;
+            LineSpaceTrackBar.Value = (int)LineSpaceNumBox.Value;
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void LineStyleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            styleBox.Refresh();
+            LineStylePreviewBox.Refresh();
         }
 
-        private void pdnColor1_ValueChanged(object sender, Color e)
+        private void LineColorWheel_ValueChanged(object sender, Color e)
         {
-            styleBox.Refresh();
+            LineStylePreviewBox.Refresh();
         }
 
-        private void styleBox_Paint(object sender, PaintEventArgs e)
+        private void LineStylePreviewBox_Paint(object sender, PaintEventArgs e)
         {
             Rectangle boxRect = e.ClipRectangle;
             boxRect.Width--;
@@ -68,7 +68,7 @@ namespace TartanEffect
 
             using (HatchBrush checkered = new HatchBrush(HatchStyle.LargeCheckerBoard, Color.White, Color.Silver))
                 e.Graphics.FillRectangle(checkered, boxRect);
-            using (Brush style = getItemBrush(comboBox1.SelectedIndex, pdnColor1.Color))
+            using (Brush style = getItemBrush(LineStyleComboBox.SelectedIndex, LineColorWheel.Color))
                 e.Graphics.FillRectangle(style, boxRect);
             e.Graphics.DrawRectangle(Pens.Black, boxRect);
             boxRect.Width -= 2;
@@ -77,51 +77,51 @@ namespace TartanEffect
             e.Graphics.DrawRectangle(Pens.White, boxRect);
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void AddToHor_Click(object sender, EventArgs e)
         {
             // Create the item and add it to the list box
-            Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, pdnColor1.Color);
-            listBox1.Items.Add(lineItem);
+            Item lineItem = new Item(LineWidthTrackBar.Value, LineSpaceTrackBar.Value, LineStyleComboBox.SelectedIndex, LineColorWheel.Color);
+            HorListBox.Items.Add(lineItem);
 
             ListButtonStates(1);
 
             FinishTokenUpdate();
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void AddToVer_Click(object sender, EventArgs e)
         {
             // Create the item and add it to the list box
-            Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, pdnColor1.Color);
-            listBox2.Items.Add(lineItem);
+            Item lineItem = new Item(LineWidthTrackBar.Value, LineSpaceTrackBar.Value, LineStyleComboBox.SelectedIndex, LineColorWheel.Color);
+            VerListBox.Items.Add(lineItem);
 
             ListButtonStates(2);
 
             FinishTokenUpdate();
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void AddToBoth_Click(object sender, EventArgs e)
         {
             // Create the item and add it to the list box
-            Item lineItem = new Item(trackBar1.Value, trackBar2.Value, comboBox1.SelectedIndex, pdnColor1.Color);
-            listBox1.Items.Add(lineItem);
-            listBox2.Items.Add(lineItem);
+            Item lineItem = new Item(LineWidthTrackBar.Value, LineSpaceTrackBar.Value, LineStyleComboBox.SelectedIndex, LineColorWheel.Color);
+            HorListBox.Items.Add(lineItem);
+            VerListBox.Items.Add(lineItem);
 
             ListButtonStates(0);
 
             FinishTokenUpdate();
         }
 
-        private void bgColorBox_Click(object sender, EventArgs e)
+        private void BackgroundColorBox_Click(object sender, EventArgs e)
         {
             if (DialogResult.OK == colorDialog1.ShowDialog())
             {
-                bgColorBox.BackColor = colorDialog1.Color;
+                BackgroundColorBox.BackColor = colorDialog1.Color;
 
                 FinishTokenUpdate();
             }
         }
 
-        private void bgColorBox_Paint(object sender, PaintEventArgs e)
+        private void BackgroundColorBox_Paint(object sender, PaintEventArgs e)
         {
             Rectangle boxRect = e.ClipRectangle;
             boxRect.Width--;
@@ -133,17 +133,16 @@ namespace TartanEffect
             e.Graphics.DrawRectangle(Pens.White, boxRect);
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void UseHorForVer_CheckedChanged(object sender, EventArgs e)
         {
-            groupBox2.Enabled = !checkBox1.Checked;
-            button8.Enabled = !checkBox1.Checked;
-            button9.Enabled = !checkBox1.Checked;
+            VerGroupBox.Enabled = !UseHorForVer.Checked;
+            AddToVer.Enabled = !UseHorForVer.Checked;
+            AddToBoth.Enabled = !UseHorForVer.Checked;
 
             FinishTokenUpdate();
         }
 
-
-        private void listBox_DrawItem(object sender, DrawItemEventArgs e)
+        private void ListBox_DrawItem(object sender, DrawItemEventArgs e)
         {
             if (e.Index == -1)
                 return;
@@ -161,7 +160,7 @@ namespace TartanEffect
             box.Width = box.Height;
             box.X += 2;
             box.Y += 2;
-            using (SolidBrush backColorB = new SolidBrush(bgColorBox.BackColor))
+            using (SolidBrush backColorB = new SolidBrush(BackgroundColorBox.BackColor))
                 e.Graphics.FillRectangle(backColorB, box);
             using (Brush styleB = getItemBrush(item.Style, item.Color))
                 e.Graphics.FillRectangle(styleB, box);
@@ -172,15 +171,15 @@ namespace TartanEffect
                 e.Graphics.DrawString(itemText, listBox.Font, textB, box.Right + 2, box.Top - (4 * (e.Graphics.DpiY / 96f)));
         }
 
-        private void listBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListButtonStates((sender == listBox1) ? 1 : 2);
+            ListButtonStates((sender == HorListBox) ? 1 : 2);
         }
 
         // Remove Line
-        private void Remove_Click(object sender, EventArgs e)
+        private void Delete_Click(object sender, EventArgs e)
         {
-            ListBox listBox = (sender == button2) ? listBox1 : listBox2;
+            ListBox listBox = (sender == HorDelete) ? HorListBox : VerListBox;
 
             if (listBox.SelectedIndex == -1)
                 return;
@@ -204,7 +203,7 @@ namespace TartanEffect
                 return;
             }
 
-            ListButtonStates((listBox == listBox1) ? 1 : 2);
+            ListButtonStates((listBox == HorListBox) ? 1 : 2);
 
             FinishTokenUpdate();
         }
@@ -212,7 +211,7 @@ namespace TartanEffect
         // Move Line Up
         private void MoveUp_Click(object sender, EventArgs e)
         {
-            ListBox listBox = (sender == button1) ? listBox1 : listBox2;
+            ListBox listBox = (sender == HorMoveUp) ? HorListBox : VerListBox;
 
             if (listBox.SelectedIndex > 0)
             {
@@ -227,7 +226,7 @@ namespace TartanEffect
         //Move Line Down
         private void MoveDown_Click(object sender, EventArgs e)
         {
-            ListBox listBox = (sender == button3) ? listBox1 : listBox2;
+            ListBox listBox = (sender == HorMoveDown) ? HorListBox : VerListBox;
 
             if ((listBox.SelectedIndex != -1) && (listBox.SelectedIndex < listBox.Items.Count - 1))
             {
@@ -239,7 +238,7 @@ namespace TartanEffect
             }
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void LoadButton_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
@@ -272,7 +271,7 @@ namespace TartanEffect
             }
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
@@ -300,47 +299,47 @@ namespace TartanEffect
 
         protected override void InitDialogFromToken(TartanConfigToken effectTokenCopy)
         {
-            listBox1.Items.Clear();
-            listBox2.Items.Clear();
+            HorListBox.Items.Clear();
+            VerListBox.Items.Clear();
 
             foreach (Item lineItem in effectTokenCopy.HorLines)
             {
                 Item item = new Item(lineItem.Width, lineItem.Spacing, lineItem.Style, lineItem.Color);
-                listBox1.Items.Add(item);
+                HorListBox.Items.Add(item);
             }
 
             foreach (Item lineItem in effectTokenCopy.VerLines)
             {
                 Item item = new Item(lineItem.Width, lineItem.Spacing, lineItem.Style, lineItem.Color);
-                listBox2.Items.Add(item);
+                VerListBox.Items.Add(item);
             }
 
-            bgColorBox.BackColor = effectTokenCopy.BackColor;
+            BackgroundColorBox.BackColor = effectTokenCopy.BackColor;
 
-            checkBox1.Checked = effectTokenCopy.OneSet;
+            UseHorForVer.Checked = effectTokenCopy.OneSet;
         }
 
         protected override void LoadIntoTokenFromDialog(TartanConfigToken writeValuesHere)
         {
             writeValuesHere.HorLines.Clear();
-            for (int i = 0; i < listBox1.Items.Count; i++)
+            for (int i = 0; i < HorListBox.Items.Count; i++)
             {
-                Item item = (Item)listBox1.Items[i];
+                Item item = (Item)HorListBox.Items[i];
 
                 writeValuesHere.HorLines.Add(new Item(item.Width, item.Spacing, item.Style, item.Color));
             }
 
             writeValuesHere.VerLines.Clear();
-            for (int i = 0; i < listBox2.Items.Count; i++)
+            for (int i = 0; i < VerListBox.Items.Count; i++)
             {
-                Item item = (Item)listBox2.Items[i];
+                Item item = (Item)VerListBox.Items[i];
 
                 writeValuesHere.VerLines.Add(new Item(item.Width, item.Spacing, item.Style, item.Color));
             }
 
-            writeValuesHere.BackColor = bgColorBox.BackColor;
+            writeValuesHere.BackColor = BackgroundColorBox.BackColor;
 
-            writeValuesHere.OneSet = checkBox1.Checked;
+            writeValuesHere.OneSet = UseHorForVer.Checked;
         }
 
         #endregion
@@ -349,16 +348,16 @@ namespace TartanEffect
         {
             if (listBox == 1 || listBox == 0)
             {
-                button1.Enabled = (listBox1.SelectedIndex > 0 && listBox1.Items.Count > 1);
-                button3.Enabled = (listBox1.SelectedIndex < listBox1.Items.Count - 1 && listBox1.Items.Count > 1 && listBox1.SelectedIndex != -1);
-                button2.Enabled = (listBox1.SelectedIndex != -1);
+                HorMoveUp.Enabled = (HorListBox.SelectedIndex > 0 && HorListBox.Items.Count > 1);
+                HorMoveDown.Enabled = (HorListBox.SelectedIndex < HorListBox.Items.Count - 1 && HorListBox.Items.Count > 1 && HorListBox.SelectedIndex != -1);
+                HorDelete.Enabled = (HorListBox.SelectedIndex != -1);
             }
 
             if (listBox == 2 || listBox == 0)
             {
-                button4.Enabled = (listBox2.SelectedIndex > 0 && listBox2.Items.Count > 1);
-                button6.Enabled = (listBox2.SelectedIndex < listBox2.Items.Count - 1 && listBox2.Items.Count > 1 && listBox2.SelectedIndex != -1);
-                button5.Enabled = (listBox2.SelectedIndex != -1);
+                VerMoveUp.Enabled = (VerListBox.SelectedIndex > 0 && VerListBox.Items.Count > 1);
+                VerMoveDown.Enabled = (VerListBox.SelectedIndex < VerListBox.Items.Count - 1 && VerListBox.Items.Count > 1 && VerListBox.SelectedIndex != -1);
+                VerDelete.Enabled = (VerListBox.SelectedIndex != -1);
             }
         }
 
