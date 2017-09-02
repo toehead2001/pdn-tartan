@@ -51,34 +51,34 @@ namespace TartanEffect
             using (SolidBrush backBrush = new SolidBrush(backColor))
                 tartanGraphics.FillRectangle(backBrush, backgroundRect);
 
-            int xGroupWide = 0;
+            int horGroupHeight = 0;
             try
             {
                 foreach (Item lineItem in horLines)
                 {
-                    xGroupWide += lineItem.Width + lineItem.Spacing;
+                    horGroupHeight += lineItem.Width + lineItem.Spacing;
                 }
             }
             catch
             {
             }
 
-            int yGroupWide = 0;
+            int verGroupWidth = 0;
             try
             {
                 foreach (Item lineItem in verLines)
                 {
-                    yGroupWide += lineItem.Width + lineItem.Spacing;
+                    verGroupWidth += lineItem.Width + lineItem.Spacing;
                 }
             }
             catch
             {
             }
 
-            int xLoops = (int)Math.Ceiling((double)selection.Height / xGroupWide);
-            int yLoops = (int)Math.Ceiling((double)selection.Width / yGroupWide);
+            int xLoops = (int)Math.Ceiling((double)selection.Height / horGroupHeight);
+            int yLoops = (int)Math.Ceiling((double)selection.Width / verGroupWidth);
 
-            int h = 0;
+            int yOffset = 0;
             for (int i = 0; i < xLoops; i++)
             {
                 try
@@ -86,14 +86,14 @@ namespace TartanEffect
                     foreach (Item lineItem in horLines)
                     {
                         // Create points that define line.
-                        Point pointA = new Point(0, lineItem.Width / 2 + h);
-                        Point pointB = new Point(selection.Width, lineItem.Width / 2 + h);
+                        Point pointA = new Point(0, lineItem.Width / 2 + yOffset);
+                        Point pointB = new Point(selection.Width, lineItem.Width / 2 + yOffset);
 
                         // Draw line to screen.
                         using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 0))
                             tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
 
-                        h += lineItem.Width + lineItem.Spacing;
+                        yOffset += lineItem.Width + lineItem.Spacing;
                     }
                 }
                 catch
@@ -101,7 +101,7 @@ namespace TartanEffect
                 }
             }
 
-            int v = 0;
+            int xOffset = 0;
             for (int i = 0; i < yLoops; i++)
             {
                 try
@@ -109,14 +109,14 @@ namespace TartanEffect
                     foreach (Item lineItem in verLines)
                     {
                         // Create points that define line.
-                        Point pointA = new Point(lineItem.Width / 2 + v, 0);
-                        Point pointB = new Point(lineItem.Width / 2 + v, selection.Height);
+                        Point pointA = new Point(lineItem.Width / 2 + xOffset, 0);
+                        Point pointB = new Point(lineItem.Width / 2 + xOffset, selection.Height);
 
                         // Draw line to screen.
                         using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 1))
                             tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
 
-                        v += lineItem.Width + lineItem.Spacing;
+                        xOffset += lineItem.Width + lineItem.Spacing;
                     }
                 }
                 catch
