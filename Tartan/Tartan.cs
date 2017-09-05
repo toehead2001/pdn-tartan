@@ -21,6 +21,13 @@ namespace TartanEffect
 
     internal class TartanEffectPlugin : Effect<TartanConfigToken>
     {
+        private List<Item> horLines;
+        private List<Item> verLines;
+        private bool oneSet;
+        private Color backColor;
+
+        private Surface tartanSurface;
+
         private static readonly Bitmap StaticIcon = new Bitmap(typeof(TartanEffectPlugin), "Tartan.png");
 
         public TartanEffectPlugin()
@@ -43,89 +50,79 @@ namespace TartanEffect
 
             Rectangle selection = EnvironmentParameters.GetSelection(srcArgs.Surface.Bounds).GetBoundsInt();
 
-            Bitmap tartanBitmap = new Bitmap(selection.Width, selection.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            Graphics tartanGraphics = Graphics.FromImage(tartanBitmap);
+            if (tartanSurface == null)
+                tartanSurface = new Surface(SrcArgs.Size);
 
-            // Fill in background color
-            Rectangle backgroundRect = new Rectangle(0, 0, selection.Width, selection.Height);
-            using (SolidBrush backBrush = new SolidBrush(backColor))
-                tartanGraphics.FillRectangle(backBrush, backgroundRect);
+            using (Graphics tartanGraphics = new RenderArgs(tartanSurface).Graphics)
+            {
 
-            int horGroupHeight = 0;
-            try
-            {
-                foreach (Item lineItem in horLines)
-                {
-                    horGroupHeight += lineItem.Width + lineItem.Spacing;
-                }
-            }
-            catch
-            {
-            }
+                // Fill in background color
+                using (SolidBrush backBrush = new SolidBrush(backColor))
+                    tartanGraphics.FillRectangle(backBrush, selection);
 
-            int verGroupWidth = 0;
-            try
-            {
-                foreach (Item lineItem in verLines)
-                {
-                    verGroupWidth += lineItem.Width + lineItem.Spacing;
-                }
-            }
-            catch
-            {
-            }
-
-            int xLoops = (int)Math.Ceiling((double)selection.Height / horGroupHeight);
-            int yLoops = (int)Math.Ceiling((double)selection.Width / verGroupWidth);
-
-            int yOffset = 0;
-            for (int i = 0; i < xLoops; i++)
-            {
+                int horGroupHeight = 0;
+                int verGroupWidth = 0;
                 try
                 {
                     foreach (Item lineItem in horLines)
-                    {
-                        // Create points that define line.
-                        Point pointA = new Point(0, lineItem.Width / 2 + yOffset);
-                        Point pointB = new Point(selection.Width, lineItem.Width / 2 + yOffset);
+                        horGroupHeight += lineItem.Width + lineItem.Spacing;
 
-                        // Draw line to screen.
-                        using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 0))
-                            tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
-
-                        yOffset += lineItem.Width + lineItem.Spacing;
-                    }
-                }
-                catch
-                {
-                }
-            }
-
-            int xOffset = 0;
-            for (int i = 0; i < yLoops; i++)
-            {
-                try
-                {
                     foreach (Item lineItem in verLines)
-                    {
-                        // Create points that define line.
-                        Point pointA = new Point(lineItem.Width / 2 + xOffset, 0);
-                        Point pointB = new Point(lineItem.Width / 2 + xOffset, selection.Height);
-
-                        // Draw line to screen.
-                        using (Pen lineItemPen = getItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 1))
-                            tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
-
-                        xOffset += lineItem.Width + lineItem.Spacing;
-                    }
+                        verGroupWidth += lineItem.Width + lineItem.Spacing;
                 }
                 catch
                 {
                 }
-            }
 
-            tartanSurface = Surface.CopyFromBitmap(tartanBitmap);
-            tartanBitmap.Dispose();
+                int xLoops = (int)Math.Ceiling((double)selection.Height / horGroupHeight);
+                int yLoops = (int)Math.Ceiling((double)selection.Width / verGroupWidth);
+
+                int yOffset = 0;
+                for (int i = 0; i < xLoops; i++)
+                {
+                    try
+                    {
+                        foreach (Item lineItem in horLines)
+                        {
+                            // Create points that define line.
+                            Point pointA = new Point(selection.Left, lineItem.Width / 2 + yOffset);
+                            Point pointB = new Point(selection.Right, lineItem.Width / 2 + yOffset);
+
+                            // Draw line to screen.
+                            using (Pen lineItemPen = GetItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 0))
+                                tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
+
+                            yOffset += lineItem.Width + lineItem.Spacing;
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                int xOffset = 0;
+                for (int i = 0; i < yLoops; i++)
+                {
+                    try
+                    {
+                        foreach (Item lineItem in verLines)
+                        {
+                            // Create points that define line.
+                            Point pointA = new Point(lineItem.Width / 2 + xOffset, selection.Top);
+                            Point pointB = new Point(lineItem.Width / 2 + xOffset, selection.Bottom);
+
+                            // Draw line to screen.
+                            using (Pen lineItemPen = GetItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 1))
+                                tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
+
+                            xOffset += lineItem.Width + lineItem.Spacing;
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
 
 
             base.OnSetRenderInfo(newToken, dstArgs, srcArgs);
@@ -136,11 +133,11 @@ namespace TartanEffect
             if (length == 0) return;
             for (int i = startIndex; i < startIndex + length; ++i)
             {
-                Render(DstArgs.Surface, SrcArgs.Surface, renderRects[i]);
+                DstArgs.Surface.CopySurface(tartanSurface, renderRects[i].Location, renderRects[i]);
             }
         }
 
-        static Pen getItemPen(int style, Color color, int width, byte orientation)
+        static Pen GetItemPen(int style, Color color, int width, byte orientation)
         {
             Color color1 = color;
             Color color2 = Color.Transparent;
@@ -181,27 +178,6 @@ namespace TartanEffect
             itemBrush.Dispose();
 
             return itemPen;
-        }
-
-        List<Item> horLines;
-        List<Item> verLines;
-        bool oneSet;
-        Color backColor;
-
-        private Surface tartanSurface;
-
-        void Render(Surface dst, Surface src, Rectangle rect)
-        {
-            Rectangle selection = EnvironmentParameters.GetSelection(src.Bounds).GetBoundsInt();
-
-            for (int y = rect.Top; y < rect.Bottom; y++)
-            {
-                if (IsCancelRequested) return;
-                for (int x = rect.Left; x < rect.Right; x++)
-                {
-                    dst[x, y] = tartanSurface.GetBilinearSample(x - selection.Left, y - selection.Top);
-                }
-            }
         }
     }
 }
