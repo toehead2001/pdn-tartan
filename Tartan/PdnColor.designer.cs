@@ -49,7 +49,6 @@
             // 
             // colorWheelBox
             // 
-            this.colorWheelBox.BackColor = System.Drawing.Color.Transparent;
             this.colorWheelBox.Location = new System.Drawing.Point(30, 0);
             this.colorWheelBox.Name = "colorWheelBox";
             this.colorWheelBox.Size = new System.Drawing.Size(108, 108);
