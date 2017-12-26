@@ -17,15 +17,26 @@ namespace TartanEffect
 
         private void TartanConfigDialog_Load(object sender, EventArgs e)
         {
+            LineWidthNumBox.ForeColor = this.ForeColor;
+            LineWidthNumBox.BackColor = this.BackColor;
+            LineSpaceNumBox.ForeColor = this.ForeColor;
+            LineSpaceNumBox.BackColor = this.BackColor;
+            VerListBox.ForeColor = this.ForeColor;
+            VerListBox.BackColor = this.BackColor;
+            HorListBox.ForeColor = this.ForeColor;
+            HorListBox.BackColor = this.BackColor;
+            LoadSaveToolStrip.ForeColor = this.ForeColor;
+            LoadSaveToolStrip.BackColor = this.BackColor;
+
             LineColorWheel.Color = Effect.EnvironmentParameters.PrimaryColor;
             LineStyleComboBox.SelectedIndex = 0;
             ListButtonStates(0);
 
-            float DPI = this.AutoScaleDimensions.Width / 96f;
-            HorListBox.ItemHeight = (int)(HorListBox.ItemHeight * DPI);
-            HorListBox.Size = new Size((int)(126 * DPI), (int)(95 * DPI));
-            VerListBox.ItemHeight = (int)(VerListBox.ItemHeight * DPI);
-            VerListBox.Size = new Size((int)(126 * DPI), (int)(95 * DPI));
+            SizeF DPI = new SizeF(this.AutoScaleDimensions.Width / 96f, this.AutoScaleDimensions.Height / 96f);
+            HorListBox.ItemHeight = (int)(HorListBox.ItemHeight * DPI.Height);
+            HorListBox.Size = new Size((int)(HorListBox.Width * DPI.Width), (int)(HorListBox.Height * DPI.Height));
+            VerListBox.ItemHeight = (int)(VerListBox.ItemHeight * DPI.Height);
+            VerListBox.Size = new Size((int)(VerListBox.Width * DPI.Width), (int)(VerListBox.Height * DPI.Height));
         }
 
         private void LineWidthTrackBar_Scroll(object sender, EventArgs e)
@@ -135,7 +146,10 @@ namespace TartanEffect
 
         private void UseHorForVer_CheckedChanged(object sender, EventArgs e)
         {
-            VerGroupBox.Enabled = !UseHorForVer.Checked;
+            VerListBox.Enabled = !UseHorForVer.Checked;
+            VerMoveUp.Enabled = !UseHorForVer.Checked;
+            VerMoveDown.Enabled = !UseHorForVer.Checked;
+            VerDelete.Enabled = !UseHorForVer.Checked;
             AddToVer.Enabled = !UseHorForVer.Checked;
             AddToBoth.Enabled = !UseHorForVer.Checked;
 

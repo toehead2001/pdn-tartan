@@ -394,6 +394,16 @@ namespace Controlz
             ignore = false;
         }
         #endregion
+
+        private void PdnColor_Load(object sender, EventArgs e)
+        {
+            redBox.ForeColor = this.ForeColor;
+            redBox.BackColor = this.BackColor;
+            greenBox.ForeColor = this.ForeColor;
+            greenBox.BackColor = this.BackColor;
+            blueBox.ForeColor = this.ForeColor;
+            blueBox.BackColor = this.BackColor;
+        }
     }
 
     internal struct HSVColor
@@ -539,10 +549,7 @@ namespace Controlz
                 PointF top2 = new PointF(g.VisibleClipBounds.Right - 1, markPos + (3.5f * dpi));
                 PointF[] marker2 = { top2, left, bottom2 };
 
-                Color markerColor = Color.Black;
-                if (isMouseOver)
-                    markerColor = Color.Blue;
-
+                Color markerColor = (isMouseOver) ? Color.Blue : Parent.ForeColor;
                 using (SolidBrush markerBrush = new SolidBrush(markerColor))
                 using (Pen markerPen = new Pen(this.BackColor, 1))
                 {

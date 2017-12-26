@@ -194,6 +194,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PdnColor";
             this.Size = new System.Drawing.Size(260, 110);
+            this.Load += new System.EventHandler(this.PdnColor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.colorWheelBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.blueBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenBox)).EndInit();

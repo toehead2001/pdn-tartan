@@ -32,11 +32,9 @@
             this.HorListBox = new System.Windows.Forms.ListBox();
             this.VerListBox = new System.Windows.Forms.ListBox();
             this.LineWidthNumBox = new System.Windows.Forms.NumericUpDown();
-            this.HorGroupBox = new System.Windows.Forms.GroupBox();
             this.HorMoveDown = new System.Windows.Forms.Button();
             this.HorDelete = new System.Windows.Forms.Button();
             this.HorMoveUp = new System.Windows.Forms.Button();
-            this.VerGroupBox = new System.Windows.Forms.GroupBox();
             this.VerMoveDown = new System.Windows.Forms.Button();
             this.VerDelete = new System.Windows.Forms.Button();
             this.VerMoveUp = new System.Windows.Forms.Button();
@@ -73,9 +71,11 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.LineStylePreviewBox = new System.Windows.Forms.PictureBox();
+            this.HorSetLabel = new System.Windows.Forms.Label();
+            this.VerSetLabel = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.LineWidthNumBox)).BeginInit();
-            this.HorGroupBox.SuspendLayout();
-            this.VerGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LineWidthTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LineSpaceTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LineSpaceNumBox)).BeginInit();
@@ -85,22 +85,24 @@
             // 
             // HorListBox
             // 
+            this.HorListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.HorListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.HorListBox.FormattingEnabled = true;
-            this.HorListBox.Location = new System.Drawing.Point(6, 19);
+            this.HorListBox.Location = new System.Drawing.Point(302, 26);
             this.HorListBox.Name = "HorListBox";
-            this.HorListBox.Size = new System.Drawing.Size(126, 95);
+            this.HorListBox.Size = new System.Drawing.Size(138, 106);
             this.HorListBox.TabIndex = 0;
             this.HorListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ListBox_DrawItem);
             this.HorListBox.SelectedIndexChanged += new System.EventHandler(this.ListBox_SelectedIndexChanged);
             // 
             // VerListBox
             // 
+            this.VerListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.VerListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.VerListBox.FormattingEnabled = true;
-            this.VerListBox.Location = new System.Drawing.Point(6, 19);
+            this.VerListBox.Location = new System.Drawing.Point(302, 154);
             this.VerListBox.Name = "VerListBox";
-            this.VerListBox.Size = new System.Drawing.Size(126, 95);
+            this.VerListBox.Size = new System.Drawing.Size(138, 106);
             this.VerListBox.TabIndex = 0;
             this.VerListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ListBox_DrawItem);
             this.VerListBox.SelectedIndexChanged += new System.EventHandler(this.ListBox_SelectedIndexChanged);
@@ -124,22 +126,10 @@
             0});
             this.LineWidthNumBox.ValueChanged += new System.EventHandler(this.LineWidthNumBox_ValueChanged);
             // 
-            // HorGroupBox
-            // 
-            this.HorGroupBox.Controls.Add(this.HorMoveDown);
-            this.HorGroupBox.Controls.Add(this.HorDelete);
-            this.HorGroupBox.Controls.Add(this.HorMoveUp);
-            this.HorGroupBox.Controls.Add(this.HorListBox);
-            this.HorGroupBox.Location = new System.Drawing.Point(302, 12);
-            this.HorGroupBox.Name = "HorGroupBox";
-            this.HorGroupBox.Size = new System.Drawing.Size(170, 121);
-            this.HorGroupBox.TabIndex = 9;
-            this.HorGroupBox.TabStop = false;
-            this.HorGroupBox.Text = "Horizontal Set";
-            // 
             // HorMoveDown
             // 
-            this.HorMoveDown.Location = new System.Drawing.Point(138, 48);
+            this.HorMoveDown.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HorMoveDown.Location = new System.Drawing.Point(446, 55);
             this.HorMoveDown.Name = "HorMoveDown";
             this.HorMoveDown.Size = new System.Drawing.Size(26, 23);
             this.HorMoveDown.TabIndex = 2;
@@ -150,7 +140,8 @@
             // HorDelete
             // 
             this.HorDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HorDelete.Location = new System.Drawing.Point(138, 92);
+            this.HorDelete.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HorDelete.Location = new System.Drawing.Point(446, 109);
             this.HorDelete.Name = "HorDelete";
             this.HorDelete.Size = new System.Drawing.Size(26, 23);
             this.HorDelete.TabIndex = 3;
@@ -160,7 +151,8 @@
             // 
             // HorMoveUp
             // 
-            this.HorMoveUp.Location = new System.Drawing.Point(138, 19);
+            this.HorMoveUp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HorMoveUp.Location = new System.Drawing.Point(446, 26);
             this.HorMoveUp.Name = "HorMoveUp";
             this.HorMoveUp.Size = new System.Drawing.Size(26, 23);
             this.HorMoveUp.TabIndex = 1;
@@ -168,22 +160,10 @@
             this.HorMoveUp.UseVisualStyleBackColor = true;
             this.HorMoveUp.Click += new System.EventHandler(this.MoveUp_Click);
             // 
-            // VerGroupBox
-            // 
-            this.VerGroupBox.Controls.Add(this.VerMoveDown);
-            this.VerGroupBox.Controls.Add(this.VerDelete);
-            this.VerGroupBox.Controls.Add(this.VerMoveUp);
-            this.VerGroupBox.Controls.Add(this.VerListBox);
-            this.VerGroupBox.Location = new System.Drawing.Point(302, 139);
-            this.VerGroupBox.Name = "VerGroupBox";
-            this.VerGroupBox.Size = new System.Drawing.Size(170, 121);
-            this.VerGroupBox.TabIndex = 10;
-            this.VerGroupBox.TabStop = false;
-            this.VerGroupBox.Text = "Vertical Set";
-            // 
             // VerMoveDown
             // 
-            this.VerMoveDown.Location = new System.Drawing.Point(138, 48);
+            this.VerMoveDown.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.VerMoveDown.Location = new System.Drawing.Point(446, 183);
             this.VerMoveDown.Name = "VerMoveDown";
             this.VerMoveDown.Size = new System.Drawing.Size(26, 23);
             this.VerMoveDown.TabIndex = 2;
@@ -194,7 +174,8 @@
             // VerDelete
             // 
             this.VerDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VerDelete.Location = new System.Drawing.Point(138, 92);
+            this.VerDelete.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.VerDelete.Location = new System.Drawing.Point(446, 237);
             this.VerDelete.Name = "VerDelete";
             this.VerDelete.Size = new System.Drawing.Size(26, 23);
             this.VerDelete.TabIndex = 3;
@@ -204,7 +185,8 @@
             // 
             // VerMoveUp
             // 
-            this.VerMoveUp.Location = new System.Drawing.Point(138, 19);
+            this.VerMoveUp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.VerMoveUp.Location = new System.Drawing.Point(446, 154);
             this.VerMoveUp.Name = "VerMoveUp";
             this.VerMoveUp.Size = new System.Drawing.Size(26, 23);
             this.VerMoveUp.TabIndex = 1;
@@ -308,6 +290,7 @@
             // 
             // AddToHor
             // 
+            this.AddToHor.ForeColor = System.Drawing.SystemColors.ControlText;
             this.AddToHor.Location = new System.Drawing.Point(11, 305);
             this.AddToHor.Name = "AddToHor";
             this.AddToHor.Size = new System.Drawing.Size(75, 23);
@@ -318,6 +301,7 @@
             // 
             // AddToVer
             // 
+            this.AddToVer.ForeColor = System.Drawing.SystemColors.ControlText;
             this.AddToVer.Location = new System.Drawing.Point(104, 305);
             this.AddToVer.Name = "AddToVer";
             this.AddToVer.Size = new System.Drawing.Size(75, 23);
@@ -328,6 +312,7 @@
             // 
             // AddToBoth
             // 
+            this.AddToBoth.ForeColor = System.Drawing.SystemColors.ControlText;
             this.AddToBoth.Location = new System.Drawing.Point(197, 305);
             this.AddToBoth.Name = "AddToBoth";
             this.AddToBoth.Size = new System.Drawing.Size(75, 23);
@@ -339,6 +324,7 @@
             // Cancel
             // 
             this.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Cancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Cancel.Location = new System.Drawing.Point(397, 347);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
@@ -349,6 +335,7 @@
             // Ok
             // 
             this.Ok.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Ok.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Ok.Location = new System.Drawing.Point(316, 347);
             this.Ok.Name = "Ok";
             this.Ok.Size = new System.Drawing.Size(75, 23);
@@ -472,7 +459,6 @@
             // 
             // LoadSaveToolStrip
             // 
-            this.LoadSaveToolStrip.BackColor = System.Drawing.SystemColors.Window;
             this.LoadSaveToolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.LoadSaveToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.LoadSaveToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -523,16 +509,59 @@
             this.LineStylePreviewBox.TabStop = false;
             this.LineStylePreviewBox.Paint += new System.Windows.Forms.PaintEventHandler(this.LineStylePreviewBox_Paint);
             // 
+            // HorSetLabel
+            // 
+            this.HorSetLabel.AutoSize = true;
+            this.HorSetLabel.Location = new System.Drawing.Point(299, 9);
+            this.HorSetLabel.Name = "HorSetLabel";
+            this.HorSetLabel.Size = new System.Drawing.Size(80, 13);
+            this.HorSetLabel.TabIndex = 37;
+            this.HorSetLabel.Text = "Horizontal Set";
+            // 
+            // VerSetLabel
+            // 
+            this.VerSetLabel.AutoSize = true;
+            this.VerSetLabel.Location = new System.Drawing.Point(299, 137);
+            this.VerSetLabel.Name = "VerSetLabel";
+            this.VerSetLabel.Size = new System.Drawing.Size(64, 13);
+            this.VerSetLabel.TabIndex = 38;
+            this.VerSetLabel.Text = "Vertical Set";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.Location = new System.Drawing.Point(302, 142);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(170, 1);
+            this.panel2.TabIndex = 39;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel3.Location = new System.Drawing.Point(302, 14);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(170, 1);
+            this.panel3.TabIndex = 40;
+            // 
             // TartanConfigDialog
             // 
             this.AcceptButton = this.Ok;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(484, 377);
+            this.Controls.Add(this.VerSetLabel);
+            this.Controls.Add(this.HorSetLabel);
+            this.Controls.Add(this.VerMoveDown);
+            this.Controls.Add(this.HorMoveDown);
+            this.Controls.Add(this.VerDelete);
             this.Controls.Add(this.LineStylePreviewBox);
+            this.Controls.Add(this.VerMoveUp);
+            this.Controls.Add(this.HorDelete);
+            this.Controls.Add(this.VerListBox);
             this.Controls.Add(this.LoadSaveToolStrip);
+            this.Controls.Add(this.HorMoveUp);
             this.Controls.Add(this.BackgroundLabel);
+            this.Controls.Add(this.HorListBox);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.LineWidthLabel);
             this.Controls.Add(this.panel1);
@@ -558,16 +587,17 @@
             this.Controls.Add(this.LineSpaceNumBox);
             this.Controls.Add(this.LineSpaceTrackBar);
             this.Controls.Add(this.LineWidthTrackBar);
-            this.Controls.Add(this.VerGroupBox);
-            this.Controls.Add(this.HorGroupBox);
             this.Controls.Add(this.LineWidthNumBox);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel3);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.Black;
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "TartanConfigDialog";
             this.Text = "Tartan";
+            this.UseAppThemeColors = true;
             this.Load += new System.EventHandler(this.TartanConfigDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LineWidthNumBox)).EndInit();
-            this.HorGroupBox.ResumeLayout(false);
-            this.VerGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LineWidthTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LineSpaceTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LineSpaceNumBox)).EndInit();
@@ -584,11 +614,9 @@
         private System.Windows.Forms.ListBox HorListBox;
         private System.Windows.Forms.ListBox VerListBox;
         private System.Windows.Forms.NumericUpDown LineWidthNumBox;
-        private System.Windows.Forms.GroupBox HorGroupBox;
         private System.Windows.Forms.Button HorMoveDown;
         private System.Windows.Forms.Button HorDelete;
         private System.Windows.Forms.Button HorMoveUp;
-        private System.Windows.Forms.GroupBox VerGroupBox;
         private System.Windows.Forms.Button VerMoveDown;
         private System.Windows.Forms.Button VerDelete;
         private System.Windows.Forms.Button VerMoveUp;
@@ -625,5 +653,9 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.PictureBox LineStylePreviewBox;
+        private System.Windows.Forms.Label HorSetLabel;
+        private System.Windows.Forms.Label VerSetLabel;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }
