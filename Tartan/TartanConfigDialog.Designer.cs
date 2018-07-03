@@ -128,7 +128,7 @@
             // 
             // HorMoveDown
             // 
-            this.HorMoveDown.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HorMoveDown.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.HorMoveDown.Location = new System.Drawing.Point(446, 55);
             this.HorMoveDown.Name = "HorMoveDown";
             this.HorMoveDown.Size = new System.Drawing.Size(26, 23);
@@ -139,8 +139,8 @@
             // 
             // HorDelete
             // 
+            this.HorDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.HorDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HorDelete.ForeColor = System.Drawing.SystemColors.ControlText;
             this.HorDelete.Location = new System.Drawing.Point(446, 109);
             this.HorDelete.Name = "HorDelete";
             this.HorDelete.Size = new System.Drawing.Size(26, 23);
@@ -151,7 +151,7 @@
             // 
             // HorMoveUp
             // 
-            this.HorMoveUp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HorMoveUp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.HorMoveUp.Location = new System.Drawing.Point(446, 26);
             this.HorMoveUp.Name = "HorMoveUp";
             this.HorMoveUp.Size = new System.Drawing.Size(26, 23);
@@ -162,7 +162,7 @@
             // 
             // VerMoveDown
             // 
-            this.VerMoveDown.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.VerMoveDown.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.VerMoveDown.Location = new System.Drawing.Point(446, 183);
             this.VerMoveDown.Name = "VerMoveDown";
             this.VerMoveDown.Size = new System.Drawing.Size(26, 23);
@@ -173,8 +173,8 @@
             // 
             // VerDelete
             // 
+            this.VerDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.VerDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VerDelete.ForeColor = System.Drawing.SystemColors.ControlText;
             this.VerDelete.Location = new System.Drawing.Point(446, 237);
             this.VerDelete.Name = "VerDelete";
             this.VerDelete.Size = new System.Drawing.Size(26, 23);
@@ -185,7 +185,7 @@
             // 
             // VerMoveUp
             // 
-            this.VerMoveUp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.VerMoveUp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.VerMoveUp.Location = new System.Drawing.Point(446, 154);
             this.VerMoveUp.Name = "VerMoveUp";
             this.VerMoveUp.Size = new System.Drawing.Size(26, 23);
@@ -290,7 +290,7 @@
             // 
             // AddToHor
             // 
-            this.AddToHor.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.AddToHor.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.AddToHor.Location = new System.Drawing.Point(11, 305);
             this.AddToHor.Name = "AddToHor";
             this.AddToHor.Size = new System.Drawing.Size(75, 23);
@@ -301,7 +301,7 @@
             // 
             // AddToVer
             // 
-            this.AddToVer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.AddToVer.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.AddToVer.Location = new System.Drawing.Point(104, 305);
             this.AddToVer.Name = "AddToVer";
             this.AddToVer.Size = new System.Drawing.Size(75, 23);
@@ -312,7 +312,7 @@
             // 
             // AddToBoth
             // 
-            this.AddToBoth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.AddToBoth.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.AddToBoth.Location = new System.Drawing.Point(197, 305);
             this.AddToBoth.Name = "AddToBoth";
             this.AddToBoth.Size = new System.Drawing.Size(75, 23);
@@ -324,7 +324,7 @@
             // Cancel
             // 
             this.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Cancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.Cancel.Location = new System.Drawing.Point(397, 347);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
@@ -335,7 +335,7 @@
             // Ok
             // 
             this.Ok.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Ok.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Ok.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.Ok.Location = new System.Drawing.Point(316, 347);
             this.Ok.Name = "Ok";
             this.Ok.Size = new System.Drawing.Size(75, 23);
