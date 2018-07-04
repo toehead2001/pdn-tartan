@@ -18,7 +18,6 @@ namespace TartanEffect
     }
 
     [PluginSupportInfo(typeof(PluginSupportInfo), DisplayName = "Tartan")]
-
     internal class TartanEffectPlugin : Effect<TartanConfigToken>
     {
         private List<Item> horLines;
@@ -28,10 +27,11 @@ namespace TartanEffect
 
         private Surface tartanSurface;
 
+        private const string StaticMenu = "Texture";
         private static readonly Bitmap StaticIcon = new Bitmap(typeof(TartanEffectPlugin), "Tartan.png");
 
         public TartanEffectPlugin()
-            : base("Tartan", StaticIcon, SubmenuNames.Render, EffectFlags.Configurable)
+            : base("Tartan", StaticIcon, StaticMenu, EffectFlags.Configurable)
         {
         }
 
