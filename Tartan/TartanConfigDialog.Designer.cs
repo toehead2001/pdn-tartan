@@ -407,7 +407,7 @@
             this.LineColorWheel.Name = "LineColorWheel";
             this.LineColorWheel.Size = new System.Drawing.Size(260, 110);
             this.LineColorWheel.TabIndex = 4;
-            this.LineColorWheel.ValueChanged += new Controlz.PdnColor.ValueChangedEventHandler(this.LineColorWheel_ValueChanged);
+            this.LineColorWheel.ValueChanged += new System.EventHandler(this.LineColorWheel_ValueChanged);
             // 
             // panel4
             // 

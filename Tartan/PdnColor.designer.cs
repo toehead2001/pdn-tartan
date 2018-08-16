@@ -162,7 +162,7 @@
             this.vColorSlider.TabIndex = 46;
             this.vColorSlider.TabStop = false;
             this.vColorSlider.Value = 0F;
-            this.vColorSlider.ValueChanged += new Controlz.ColorSlider.ValueChangedEventHandler(this.HSV_Sliders_ValueChanged);
+            this.vColorSlider.ValueChanged += new System.EventHandler(this.HSV_Sliders_ValueChanged);
             // 
             // sColorSlider
             // 
@@ -176,7 +176,7 @@
             this.sColorSlider.TabIndex = 45;
             this.sColorSlider.TabStop = false;
             this.sColorSlider.Value = 0F;
-            this.sColorSlider.ValueChanged += new Controlz.ColorSlider.ValueChangedEventHandler(this.HSV_Sliders_ValueChanged);
+            this.sColorSlider.ValueChanged += new System.EventHandler(this.HSV_Sliders_ValueChanged);
             // 
             // PdnColor
             // 
@@ -193,7 +193,6 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PdnColor";
             this.Size = new System.Drawing.Size(260, 110);
-            this.Load += new System.EventHandler(this.PdnColor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.colorWheelBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.blueBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenBox)).EndInit();

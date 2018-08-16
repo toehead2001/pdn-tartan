@@ -66,7 +66,7 @@ namespace TartanEffect
             LineStylePreviewBox.Refresh();
         }
 
-        private void LineColorWheel_ValueChanged(object sender, Color e)
+        private void LineColorWheel_ValueChanged(object sender, EventArgs e)
         {
             LineStylePreviewBox.Refresh();
         }
