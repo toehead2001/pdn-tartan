@@ -596,7 +596,6 @@
             this.Name = "TartanConfigDialog";
             this.Text = "Tartan";
             this.UseAppThemeColors = true;
-            this.Load += new System.EventHandler(this.TartanConfigDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LineWidthNumBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LineWidthTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LineSpaceTrackBar)).EndInit();

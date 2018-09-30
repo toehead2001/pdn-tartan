@@ -15,8 +15,10 @@ namespace TartanEffect
             InitializeComponent();
         }
 
-        private void TartanConfigDialog_Load(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
+
             LineWidthNumBox.ForeColor = this.ForeColor;
             LineWidthNumBox.BackColor = this.BackColor;
             LineSpaceNumBox.ForeColor = this.ForeColor;
@@ -34,9 +36,9 @@ namespace TartanEffect
 
             SizeF DPI = new SizeF(this.AutoScaleDimensions.Width / 96f, this.AutoScaleDimensions.Height / 96f);
             HorListBox.ItemHeight = (int)(HorListBox.ItemHeight * DPI.Height);
-            HorListBox.Size = new Size((int)(HorListBox.Width * DPI.Width), (int)(HorListBox.Height * DPI.Height));
+            HorListBox.Height = HorDelete.Bottom - HorMoveUp.Top;
             VerListBox.ItemHeight = (int)(VerListBox.ItemHeight * DPI.Height);
-            VerListBox.Size = new Size((int)(VerListBox.Width * DPI.Width), (int)(VerListBox.Height * DPI.Height));
+            VerListBox.Height = VerDelete.Bottom - VerMoveUp.Top;
         }
 
         private void LineWidthTrackBar_Scroll(object sender, EventArgs e)
