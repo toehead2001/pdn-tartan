@@ -52,13 +52,11 @@ namespace TartanEffect
         private void LineSpaceTrackBar_Scroll(object sender, EventArgs e)
         {
             LineSpaceNumBox.Value = LineSpaceTrackBar.Value;
-
         }
 
         private void LineSpaceNumBox_ValueChanged(object sender, EventArgs e)
         {
             LineSpaceTrackBar.Value = (int)LineSpaceNumBox.Value;
-
         }
 
         private void LineStyleComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -204,12 +202,12 @@ namespace TartanEffect
             }
             else if (listBox.SelectedIndex < listBox.Items.Count - 1)
             {
-                listBox.SelectedIndex += 1;
+                listBox.SelectedIndex++;
                 listBox.Items.RemoveAt(listBox.SelectedIndex - 1);
             }
             else if (listBox.SelectedIndex == listBox.Items.Count - 1)
             {
-                listBox.SelectedIndex -= 1;
+                listBox.SelectedIndex--;
                 listBox.Items.RemoveAt(listBox.SelectedIndex + 1);
             }
             else
@@ -356,32 +354,23 @@ namespace TartanEffect
 
         private static Brush GetItemBrush(int style, Color color)
         {
-            Brush itemBrush;
             switch (style)
             {
                 case 0:
-                    itemBrush = new SolidBrush(color);
-                    break;
+                    return new SolidBrush(color);
                 case 1:
-                    itemBrush = new SolidBrush(Color.FromArgb(170, color));
-                    break;
+                    return new SolidBrush(Color.FromArgb(170, color));
                 case 2:
-                    itemBrush = new SolidBrush(Color.FromArgb(85, color));
-                    break;
+                    return new SolidBrush(Color.FromArgb(85, color));
                 case 3:
-                    itemBrush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, color, Color.Transparent);
-                    break;
+                    return new HatchBrush(HatchStyle.DarkUpwardDiagonal, color, Color.Transparent);
                 case 4:
-                    itemBrush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, color, Color.Transparent);
-                    break;
+                    return new HatchBrush(HatchStyle.DarkDownwardDiagonal, color, Color.Transparent);
                 case 5:
-                    itemBrush = new HatchBrush(HatchStyle.Percent50, color, Color.Transparent);
-                    break;
+                    return new HatchBrush(HatchStyle.Percent50, color, Color.Transparent);
                 default:
-                    itemBrush = new SolidBrush(color);
-                    break;
+                    return new SolidBrush(color);
             }
-            return itemBrush;
         }
     }
 

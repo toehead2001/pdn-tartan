@@ -27,11 +27,10 @@ namespace TartanEffect
 
         private Surface tartanSurface;
 
-        private const string StaticMenu = "Texture";
         private static readonly Bitmap StaticIcon = new Bitmap(typeof(TartanEffectPlugin), "Tartan.png");
 
         public TartanEffectPlugin()
-            : base("Tartan", StaticIcon, StaticMenu, EffectFlags.Configurable)
+            : base("Tartan", StaticIcon, "Texture", EffectFlags.Configurable)
         {
         }
 
@@ -47,7 +46,6 @@ namespace TartanEffect
             horLines = newToken.HorLines;
             verLines = oneSet ? newToken.HorLines : newToken.VerLines;
 
-
             Rectangle selection = EnvironmentParameters.GetSelection(srcArgs.Surface.Bounds).GetBoundsInt();
 
             if (tartanSurface == null)
@@ -55,7 +53,6 @@ namespace TartanEffect
 
             using (Graphics tartanGraphics = new RenderArgs(tartanSurface).Graphics)
             {
-
                 // Fill in background color
                 using (SolidBrush backBrush = new SolidBrush(backColor))
                     tartanGraphics.FillRectangle(backBrush, selection);
@@ -124,7 +121,6 @@ namespace TartanEffect
                 }
             }
 
-
             base.OnSetRenderInfo(newToken, dstArgs, srcArgs);
         }
 
@@ -137,7 +133,7 @@ namespace TartanEffect
             }
         }
 
-        static Pen GetItemPen(int style, Color color, int width, byte orientation)
+        private static Pen GetItemPen(int style, Color color, int width, byte orientation)
         {
             Color color1 = color;
             Color color2 = Color.Transparent;
