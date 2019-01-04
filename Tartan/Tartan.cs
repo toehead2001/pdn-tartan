@@ -105,10 +105,8 @@ namespace TartanEffect
         protected override void OnRender(Rectangle[] renderRects, int startIndex, int length)
         {
             if (length == 0) return;
-            for (int i = startIndex; i < startIndex + length; ++i)
-            {
-                DstArgs.Surface.CopySurface(tartanSurface, renderRects[i].Location, renderRects[i]);
-            }
+
+            DstArgs.Surface.CopySurface(tartanSurface, renderRects, startIndex, length);
         }
 
         private static Pen GetItemPen(int style, Color color, int width, bool isVertical)
