@@ -24,7 +24,7 @@ namespace TartanEffect
         private static readonly Bitmap StaticIcon = new Bitmap(typeof(TartanEffectPlugin), "Tartan.png");
 
         public TartanEffectPlugin()
-            : base("Tartan", StaticIcon, "Texture", EffectFlags.Configurable)
+            : base("Tartan", StaticIcon, "Texture", new EffectOptions() { Flags = EffectFlags.Configurable })
         {
         }
 
