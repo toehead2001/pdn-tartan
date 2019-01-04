@@ -49,13 +49,17 @@ namespace TartanEffect
             Rectangle selection = EnvironmentParameters.GetSelection(srcArgs.Surface.Bounds).GetBoundsInt();
 
             if (tartanSurface == null)
+            {
                 tartanSurface = new Surface(SrcArgs.Size);
+            }
 
             using (Graphics tartanGraphics = new RenderArgs(tartanSurface).Graphics)
             {
                 // Fill in background color
                 using (SolidBrush backBrush = new SolidBrush(backColor))
+                {
                     tartanGraphics.FillRectangle(backBrush, selection);
+                }
 
                 int horGroupHeight = 0;
                 int verGroupWidth = 0;
@@ -86,8 +90,10 @@ namespace TartanEffect
                             Point pointB = new Point(selection.Right, lineItem.Width / 2 + yOffset);
 
                             // Draw line to screen.
-                            using (Pen lineItemPen = GetItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 0))
+                            using (Pen lineItemPen = GetItemPen(lineItem.Style, lineItem.Color, lineItem.Width, false))
+                            {
                                 tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
+                            }
 
                             yOffset += lineItem.Width + lineItem.Spacing;
                         }
@@ -109,8 +115,10 @@ namespace TartanEffect
                             Point pointB = new Point(lineItem.Width / 2 + xOffset, selection.Bottom);
 
                             // Draw line to screen.
-                            using (Pen lineItemPen = GetItemPen(lineItem.Style, lineItem.Color, lineItem.Width, 1))
+                            using (Pen lineItemPen = GetItemPen(lineItem.Style, lineItem.Color, lineItem.Width, true))
+                            {
                                 tartanGraphics.DrawLine(lineItemPen, pointA, pointB);
+                            }
 
                             xOffset += lineItem.Width + lineItem.Spacing;
                         }
@@ -133,12 +141,12 @@ namespace TartanEffect
             }
         }
 
-        private static Pen GetItemPen(int style, Color color, int width, byte orientation)
+        private static Pen GetItemPen(int style, Color color, int width, bool isVertical)
         {
             Color color1 = color;
             Color color2 = Color.Transparent;
 
-            if (orientation == 1)
+            if (isVertical)
             {
                 color1 = Color.Transparent;
                 color2 = color;

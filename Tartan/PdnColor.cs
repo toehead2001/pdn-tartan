@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace Controlz
 {
-    [DefaultEvent("ValueChanged")]
+    [DefaultEvent(nameof(ValueChanged))]
     public partial class PdnColor : UserControl
     {
         private bool mouseDown;
