@@ -20,8 +20,8 @@ namespace TartanEffect
     [PluginSupportInfo(typeof(PluginSupportInfo), DisplayName = "Tartan")]
     internal class TartanEffectPlugin : Effect<TartanConfigToken>
     {
-        private List<Item> horLines;
-        private List<Item> verLines;
+        private Item[] horLines;
+        private Item[] verLines;
         private bool oneSet;
         private Color backColor;
 
@@ -43,8 +43,8 @@ namespace TartanEffect
         {
             backColor = newToken.BackColor;
             oneSet = newToken.OneSet;
-            horLines = newToken.HorLines;
-            verLines = oneSet ? newToken.HorLines : newToken.VerLines;
+            horLines = newToken.HorLines.ToArray();
+            verLines = oneSet ? newToken.HorLines.ToArray() : newToken.VerLines.ToArray();
 
             Rectangle selection = EnvironmentParameters.GetSelection(srcArgs.Surface.Bounds).GetBoundsInt();
 
@@ -61,27 +61,10 @@ namespace TartanEffect
                     tartanGraphics.FillRectangle(backBrush, selection);
                 }
 
-                int horGroupHeight = 0;
-                int verGroupWidth = 0;
-                try
+                if (horLines.Length > 0)
                 {
-                    foreach (Item lineItem in horLines)
-                        horGroupHeight += lineItem.Width + lineItem.Spacing;
-
-                    foreach (Item lineItem in verLines)
-                        verGroupWidth += lineItem.Width + lineItem.Spacing;
-                }
-                catch
-                {
-                }
-
-                int xLoops = (int)Math.Ceiling((double)selection.Height / horGroupHeight);
-                int yLoops = (int)Math.Ceiling((double)selection.Width / verGroupWidth);
-
-                int yOffset = 0;
-                for (int i = 0; i < xLoops; i++)
-                {
-                    try
+                    int yOffset = selection.Top;
+                    while (yOffset <= selection.Bottom)
                     {
                         foreach (Item lineItem in horLines)
                         {
@@ -98,15 +81,12 @@ namespace TartanEffect
                             yOffset += lineItem.Width + lineItem.Spacing;
                         }
                     }
-                    catch
-                    {
-                    }
                 }
 
-                int xOffset = 0;
-                for (int i = 0; i < yLoops; i++)
+                if (verLines.Length > 0)
                 {
-                    try
+                    int xOffset = selection.Left;
+                    while (xOffset <= selection.Right)
                     {
                         foreach (Item lineItem in verLines)
                         {
@@ -122,9 +102,6 @@ namespace TartanEffect
 
                             xOffset += lineItem.Width + lineItem.Spacing;
                         }
-                    }
-                    catch
-                    {
                     }
                 }
             }
