@@ -193,7 +193,7 @@ namespace TartanEffect
         // Remove Line
         private void Delete_Click(object sender, EventArgs e)
         {
-            ListBox listBox = sender as ListBox;
+            ListBox listBox = (sender == HorDelete) ? HorListBox : VerListBox;
 
             if (listBox.SelectedIndex == -1)
                 return;
@@ -225,8 +225,9 @@ namespace TartanEffect
         // Move Line Up
         private void MoveUp_Click(object sender, EventArgs e)
         {
-            if (sender is ListBox listBox &&
-                listBox.SelectedIndex > 0)
+            ListBox listBox = (sender == HorMoveUp) ? HorListBox : VerListBox;
+
+            if (listBox.SelectedIndex > 0)
             {
                 listBox.Items.Insert(listBox.SelectedIndex - 1, listBox.SelectedItem);
                 listBox.SelectedIndex -= 2;
@@ -239,9 +240,9 @@ namespace TartanEffect
         //Move Line Down
         private void MoveDown_Click(object sender, EventArgs e)
         {
-            if (sender is ListBox listBox &&
-                listBox.SelectedIndex != -1 &&
-                listBox.SelectedIndex < listBox.Items.Count - 1)
+            ListBox listBox = (sender == HorMoveDown) ? HorListBox : VerListBox;
+
+            if (listBox.SelectedIndex != -1 && listBox.SelectedIndex < listBox.Items.Count - 1)
             {
                 listBox.Items.Insert(listBox.SelectedIndex + 2, listBox.SelectedItem);
                 listBox.SelectedIndex += 2;
