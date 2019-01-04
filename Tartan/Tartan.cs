@@ -20,13 +20,7 @@ namespace TartanEffect
     [PluginSupportInfo(typeof(PluginSupportInfo), DisplayName = "Tartan")]
     internal class TartanEffectPlugin : Effect<TartanConfigToken>
     {
-        private Item[] horLines;
-        private Item[] verLines;
-        private bool oneSet;
-        private Color backColor;
-
         private Surface tartanSurface;
-
         private static readonly Bitmap StaticIcon = new Bitmap(typeof(TartanEffectPlugin), "Tartan.png");
 
         public TartanEffectPlugin()
@@ -41,10 +35,9 @@ namespace TartanEffect
 
         protected override void OnSetRenderInfo(TartanConfigToken newToken, RenderArgs dstArgs, RenderArgs srcArgs)
         {
-            backColor = newToken.BackColor;
-            oneSet = newToken.OneSet;
-            horLines = newToken.HorLines.ToArray();
-            verLines = oneSet ? newToken.HorLines.ToArray() : newToken.VerLines.ToArray();
+            Color backColor = newToken.BackColor;
+            Item[] horLines = newToken.HorLines.ToArray();
+            Item[] verLines = newToken.OneSet ? newToken.HorLines.ToArray() : newToken.VerLines.ToArray();
 
             Rectangle selection = EnvironmentParameters.GetSelection(srcArgs.Surface.Bounds).GetBoundsInt();
 
