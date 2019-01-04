@@ -324,12 +324,12 @@ namespace TartanEffect
         protected override void LoadIntoTokenFromDialog(TartanConfigToken writeValuesHere)
         {
             writeValuesHere.HorLines.Clear();
-            for (int i = 0; i < HorListBox.Items.Count; i++)
-                writeValuesHere.HorLines.Add((Item)HorListBox.Items[i]);
+            foreach (Item item in HorListBox.Items)
+                writeValuesHere.HorLines.Add(item);
 
             writeValuesHere.VerLines.Clear();
-            for (int i = 0; i < VerListBox.Items.Count; i++)
-                writeValuesHere.VerLines.Add((Item)VerListBox.Items[i]);
+            foreach (Item item in VerListBox.Items)
+                writeValuesHere.VerLines.Add(item);
 
             writeValuesHere.BackColor = BackgroundColorBox.BackColor;
 
