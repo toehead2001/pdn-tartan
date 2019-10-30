@@ -7,6 +7,7 @@ using System.ComponentModel;
 namespace Controlz
 {
     [DefaultEvent(nameof(ValueChanged))]
+    [DefaultProperty(nameof(Color))]
     public partial class PdnColor : UserControl
     {
         private bool mouseDown;
@@ -37,7 +38,7 @@ namespace Controlz
         }
 
         #region Control Properties
-        [Category("Data")]
+        [Category(nameof(CategoryAttribute.Data))]
         public Color Color
         {
             get => HSVColor.ToColor(MasterAlpha, MasterHue, MasterSat, MasterVal);
@@ -58,7 +59,7 @@ namespace Controlz
         #endregion
 
         #region Event Handler
-        [Category("Action")]
+        [Category(nameof(CategoryAttribute.Action))]
         public event EventHandler ValueChanged;
         protected void OnValueChanged()
         {
@@ -400,11 +401,12 @@ namespace Controlz
         }
     }
 
-    [DefaultEvent("ValueChanged")]
+    [DefaultEvent(nameof(ValueChanged))]
+    [DefaultProperty(nameof(Value))]
     public class ColorSlider : PictureBox
     {
         #region Properties
-        [Category("Data")]
+        [Category(nameof(CategoryAttribute.Data))]
         public float Value
         {
             get => this.value;
@@ -416,14 +418,14 @@ namespace Controlz
             }
         }
 
-        [Category("Behavior")]
+        [Category(nameof(CategoryAttribute.Behavior))]
         public int MaxValue
         {
             get => this.maxValue;
             set => this.maxValue = value;
         }
 
-        [Category("Appearance")]
+        [Category(nameof(CategoryAttribute.Appearance))]
         public Color[] Colors
         {
             get => this.colors;
@@ -436,7 +438,7 @@ namespace Controlz
         #endregion
 
         #region Event handler
-        [Category("Action")]
+        [Category(nameof(CategoryAttribute.Action))]
         public event EventHandler ValueChanged;
         protected void OnValueChanged()
         {
