@@ -109,7 +109,7 @@ namespace TartanEffect
             DstArgs.Surface.CopySurface(tartanSurface, renderRects, startIndex, length);
         }
 
-        private static Pen GetItemPen(int style, Color color, int width, bool isVertical)
+        private static Pen GetItemPen(LineStyle style, Color color, int width, bool isVertical)
         {
             Color color1 = isVertical ? Color.Transparent : color;
             Color color2 = isVertical ? color : Color.Transparent;
@@ -117,22 +117,22 @@ namespace TartanEffect
             Brush itemBrush;
             switch (style)
             {
-                case 0:
+                case LineStyle.Solid100:
                     itemBrush = new SolidBrush(color);
                     break;
-                case 1:
+                case LineStyle.Solid66:
                     itemBrush = new SolidBrush(Color.FromArgb(170, color));
                     break;
-                case 2:
+                case LineStyle.Solid33:
                     itemBrush = new SolidBrush(Color.FromArgb(85, color));
                     break;
-                case 3:
+                case LineStyle.DiagonalUp:
                     itemBrush = new HatchBrush(HatchStyle.DarkUpwardDiagonal, color1, color2);
                     break;
-                case 4:
+                case LineStyle.DiagonalDown:
                     itemBrush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, color1, color2);
                     break;
-                case 5:
+                case LineStyle.Dots:
                     itemBrush = new HatchBrush(HatchStyle.Percent50, color1, color2);
                     break;
                 default:

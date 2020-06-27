@@ -350,19 +350,25 @@ namespace TartanEffect
 
         private static Brush GetItemBrush(int style, Color color)
         {
+            LineStyle lineStyle = Enum.IsDefined(typeof(LineStyle), 50) ? (LineStyle)style : 0;
+            return GetItemBrush(lineStyle, color);
+        }
+
+        private static Brush GetItemBrush(LineStyle style, Color color)
+        {
             switch (style)
             {
-                case 0:
+                case LineStyle.Solid100:
                     return new SolidBrush(color);
-                case 1:
+                case LineStyle.Solid66:
                     return new SolidBrush(Color.FromArgb(170, color));
-                case 2:
+                case LineStyle.Solid33:
                     return new SolidBrush(Color.FromArgb(85, color));
-                case 3:
+                case LineStyle.DiagonalUp:
                     return new HatchBrush(HatchStyle.DarkUpwardDiagonal, color, Color.Transparent);
-                case 4:
+                case LineStyle.DiagonalDown:
                     return new HatchBrush(HatchStyle.DarkDownwardDiagonal, color, Color.Transparent);
-                case 5:
+                case LineStyle.Dots:
                     return new HatchBrush(HatchStyle.Percent50, color, Color.Transparent);
                 default:
                     return new SolidBrush(color);
@@ -374,7 +380,16 @@ namespace TartanEffect
     {
         public int Width { get; set; }
         public int Spacing { get; set; }
-        public int Style { get; set; }
+
+        [XmlIgnore]
+        public LineStyle Style { get; set; }
+
+        [XmlElement(nameof(Style))]
+        public int StyleInt
+        {
+            get => (int)Style;
+            set => Style = GetLineStyle(value);
+        }
 
         [XmlIgnore]
         public Color Color { get; set; }
@@ -390,8 +405,13 @@ namespace TartanEffect
         {
             Spacing = spacing;
             Width = width;
-            Style = style;
+            Style = GetLineStyle(style);
             Color = color;
+        }
+
+        private static LineStyle GetLineStyle(int integer)
+        {
+            return Enum.IsDefined(typeof(LineStyle), integer) ? (LineStyle)integer : 0;
         }
     }
 }

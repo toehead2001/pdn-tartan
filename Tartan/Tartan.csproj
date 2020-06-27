@@ -50,6 +50,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LineStyle.cs" />
     <Compile Include="PdnColor.cs">
       <SubType>UserControl</SubType>
     </Compile>
