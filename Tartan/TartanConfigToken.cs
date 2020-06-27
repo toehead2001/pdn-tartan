@@ -28,12 +28,12 @@ namespace TartanEffect
             return new TartanConfigToken(this);
         }
 
-        public List<Item> HorLines { get; }
-        public List<Item> VerLines { get; }
+        public List<Item> HorLines { get; set; }
+        public List<Item> VerLines { get; set; }
         public bool OneSet { get; set; }
         [XmlIgnore]
         public Color BackColor { get; set; }
-        [XmlElement("BackColor")]
+        [XmlElement(nameof(BackColor))]
         public string BackColorHtml
         {
             get => ColorTranslator.ToHtml(BackColor);

@@ -36,10 +36,10 @@ namespace TartanEffect
         protected override void OnSetRenderInfo(TartanConfigToken newToken, RenderArgs dstArgs, RenderArgs srcArgs)
         {
             Color backColor = newToken.BackColor;
-            Item[] horLines = newToken.HorLines.ToArray();
-            Item[] verLines = newToken.OneSet ? newToken.HorLines.ToArray() : newToken.VerLines.ToArray();
+            IReadOnlyCollection<Item> horLines = newToken.HorLines;
+            IReadOnlyCollection<Item> verLines = newToken.OneSet ? newToken.HorLines : newToken.VerLines;
 
-            Rectangle selection = EnvironmentParameters.GetSelection(srcArgs.Surface.Bounds).GetBoundsInt();
+            Rectangle selection = EnvironmentParameters.SelectionBounds;
 
             if (tartanSurface == null)
             {
@@ -54,7 +54,7 @@ namespace TartanEffect
                     tartanGraphics.FillRectangle(backBrush, selection);
                 }
 
-                if (horLines.Length > 0)
+                if (horLines.Count > 0)
                 {
                     int yOffset = selection.Top;
                     while (yOffset <= selection.Bottom)
@@ -76,7 +76,7 @@ namespace TartanEffect
                     }
                 }
 
-                if (verLines.Length > 0)
+                if (verLines.Count > 0)
                 {
                     int xOffset = selection.Left;
                     while (xOffset <= selection.Right)
@@ -111,14 +111,8 @@ namespace TartanEffect
 
         private static Pen GetItemPen(int style, Color color, int width, bool isVertical)
         {
-            Color color1 = color;
-            Color color2 = Color.Transparent;
-
-            if (isVertical)
-            {
-                color1 = Color.Transparent;
-                color2 = color;
-            }
+            Color color1 = isVertical ? Color.Transparent : color;
+            Color color2 = isVertical ? color : Color.Transparent;
 
             Brush itemBrush;
             switch (style)

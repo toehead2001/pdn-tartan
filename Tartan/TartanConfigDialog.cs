@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -35,9 +36,9 @@ namespace TartanEffect
             ListButtonStates(0);
 
             SizeF DPI = new SizeF(this.AutoScaleDimensions.Width / 96f, this.AutoScaleDimensions.Height / 96f);
-            HorListBox.ItemHeight = (int)(HorListBox.ItemHeight * DPI.Height);
+            HorListBox.ItemHeight = (int)Math.Round(HorListBox.ItemHeight * DPI.Height);
             HorListBox.Height = HorDelete.Bottom - HorMoveUp.Top;
-            VerListBox.ItemHeight = (int)(VerListBox.ItemHeight * DPI.Height);
+            VerListBox.ItemHeight = (int)Math.Round(VerListBox.ItemHeight * DPI.Height);
             VerListBox.Height = VerDelete.Bottom - VerMoveUp.Top;
         }
 
@@ -182,7 +183,7 @@ namespace TartanEffect
             // Draw the item's text
             string itemText = $"{item.Width} px W - {item.Spacing} px S";
             using (SolidBrush textB = new SolidBrush(e.ForeColor))
-                e.Graphics.DrawString(itemText, listBox.Font, textB, box.Right + 2, box.Top - (4 * (e.Graphics.DpiY / 96f)));
+                e.Graphics.DrawString(itemText, e.Font, textB, box.Right + 2, box.Top - (4 * (e.Graphics.DpiY / 96f)));
         }
 
         private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -323,16 +324,9 @@ namespace TartanEffect
 
         protected override void LoadIntoTokenFromDialog(TartanConfigToken writeValuesHere)
         {
-            writeValuesHere.HorLines.Clear();
-            foreach (Item item in HorListBox.Items)
-                writeValuesHere.HorLines.Add(item);
-
-            writeValuesHere.VerLines.Clear();
-            foreach (Item item in VerListBox.Items)
-                writeValuesHere.VerLines.Add(item);
-
+            writeValuesHere.HorLines = HorListBox.Items.OfType<Item>().ToList();
+            writeValuesHere.VerLines = VerListBox.Items.OfType<Item>().ToList();
             writeValuesHere.BackColor = BackgroundColorBox.BackColor;
-
             writeValuesHere.OneSet = UseHorForVer.Checked;
         }
         #endregion
@@ -385,7 +379,7 @@ namespace TartanEffect
         [XmlIgnore]
         public Color Color { get; set; }
 
-        [XmlElement("Color")]
+        [XmlElement(nameof(Color))]
         public string ColorHtml
         {
             get => ColorTranslator.ToHtml(Color);
